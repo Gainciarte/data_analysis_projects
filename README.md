@@ -73,7 +73,7 @@ data_analysis_projects/
 
 | # | Project | Description | Key Skills |
 |---|---|---|---|
-| 01 | Inventory Control | ABC/XYZ analysis with dynamic inventory tracking | Pivot Tables, Conditional Formatting, VLOOKUP |
+| 01 | Inventory Control | ABC/XYZ analysis on Amazon e-commerce sales data. Classifies 7,116 SKUs by value and demand variability across 12 months | Pivot Tables, SUMIF, COUNTIF, Conditional Formatting, VLOOKUP |
 | 02 | KPI Dashboard | Operational KPI dashboard with slicers and charts | Dashboard Design, Named Ranges, Dynamic Charts |
 | 03 | Demand Forecast | Moving average and seasonal demand forecasting | Statistical Functions, FORECAST, Trend Analysis |
 | 04 | Supplier Evaluation | Weighted scoring model for supplier selection | Decision Matrix, IF/AND/OR, Data Validation |
@@ -163,8 +163,18 @@ pip install -r requirements.txt
 ## 📌 Notes
 
 - Each project folder contains its own `README.md` with objective, data source, methodology and results.
+- Raw data files are **not included** in this repository due to file size. Each project README links to the original data source.
 - Datasets used are either publicly available or anonymized synthetic data.
 - Projects are added progressively — check back for updates.
+- Excel 01: Stock Status analysis was excluded as the dataset contains sales data only, not inventory levels. This limitation is documented in the project README.
+
+---
+
+## 🗃️ Data Sources
+
+| Project | Dataset | Source |
+|---|---|---|
+| Excel 01 — Inventory Control | Amazon Sale Report (e-commerce sales data) | [Kaggle](https://www.kaggle.com/datasets/thedevastator/unlock-profits-with-e-commerce-sales-data?resource=download&select=Amazon+Sale+Report.csv) |
 
 ---
 
@@ -172,7 +182,7 @@ pip install -r requirements.txt
 
 **Gustavo Inciarte**  
 Mechanical Engineer | Data & Logistics Analyst  
-[LinkedIn](https://linkedin.com/in/gainciarte) · [GitHub](https://github.com/Gainciarte)
+[LinkedIn](https://linkedin.com/in/your-profile) · [GitHub](https://github.com/your-username)
 
 ---
 
