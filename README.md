@@ -153,7 +153,7 @@ data_analysis_projects/
 ### Python setup
 
 ```bash
-git clone https://github.com/your-username/data_analysis_projects.git
+git clone https://github.com/Gainciarte/data_analysis_projects.git
 cd data_analysis_projects
 pip install -r requirements.txt
 ```
@@ -182,7 +182,7 @@ pip install -r requirements.txt
 
 **Gustavo Inciarte**  
 Mechanical Engineer | Data & Logistics Analyst  
-[LinkedIn](https://linkedin.com/in/your-profile) · [GitHub](https://github.com/your-username)
+[LinkedIn](https://linkedin.com/in/gainciarte) · [GitHub](https://github.com/Gainciarte)
 
 ---
 
