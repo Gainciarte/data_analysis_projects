@@ -75,7 +75,7 @@ Build a weighted multi-criteria decision model (MCDM) to evaluate and rank 35 su
 | Normalized Data | Min-Max normalized scores for all criteria |
 | Weights | Criteria weights and justification |
 | Scoring | Weighted scores, ranking and classification per supplier |
-| Dashboard | Executive dashboard with market overview and Top 3 recommendation |
+| Dashboard | Executive dashboard with market overview and Top recommendations |
 
 ---
 
