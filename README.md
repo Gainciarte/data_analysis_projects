@@ -76,7 +76,7 @@ data_analysis_projects/
 | 01 | Inventory Control | ABC/XYZ analysis on Amazon e-commerce sales data. Classifies 7,116 SKUs by value and demand variability across 12 months | Pivot Tables, SUMIF, COUNTIF, Conditional Formatting, VLOOKUP |
 | 02 | KPI Dashboard | Operational sales KPI dashboard using Walmart weekly sales data across 45 stores and 3 years | Dashboard Design, Slicers, Dynamic Charts, Named Ranges |
 | 03 | Inventory Parameters | Safety stock, reorder point, EOQ and value at risk calculation for 290 SKUs using 25 months of real sales history | NORM.S.INV, VLOOKUP, SQRT, CEILING, Pivot Tables |
-| 04 | Supplier Evaluation | Weighted scoring model for supplier selection | Decision Matrix, IF/AND/OR, Data Validation |
+| 04 | Supplier Evaluation | Multi-criteria decision model (MCDM) to evaluate and rank 35 suppliers across 12 weighted criteria | SUMPRODUCT, Min-Max Normalization, INDEX/MATCH, RANK |
 | 05 | Budget Tracking | Monthly budget vs actual with variance analysis | Power Query, Waterfall Chart, Conditional Logic |
 
 ---
@@ -178,6 +178,7 @@ pip install -r requirements.txt
 | Excel 01 - Inventory Control | Amazon Sale Report (e-commerce sales data) | [Kaggle](https://www.kaggle.com/datasets/thedevastator/unlock-profits-with-e-commerce-sales-data?resource=download&select=Amazon+Sale+Report.csv) |
 | Excel 02 - KPI Dashboard | Walmart Sales (45 stores, weekly sales 2010-2012) | [Kaggle](https://www.kaggle.com/datasets/mikhail1681/walmart-sales) |
 | Excel 03 - Inventory Parameters | Dynamic Inventory Analytics - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
+| Excel 04 - Supplier Evaluation | Suppliers Ranking Grades | [Kaggle](https://www.kaggle.com/datasets/michaelclodeemil/suppliers-ranking-grades) |
 
 ---
 
