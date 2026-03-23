@@ -77,7 +77,7 @@ data_analysis_projects/
 | 02 | KPI Dashboard | Operational sales KPI dashboard using Walmart weekly sales data across 45 stores and 3 years | Dashboard Design, Slicers, Dynamic Charts, Named Ranges |
 | 03 | Inventory Parameters | Safety stock, reorder point, EOQ and value at risk calculation for 290 SKUs using 25 months of real sales history | NORM.S.INV, VLOOKUP, SQRT, CEILING, Pivot Tables |
 | 04 | Supplier Evaluation | Multi-criteria decision model (MCDM) to evaluate and rank 35 suppliers across 12 weighted criteria | SUMPRODUCT, Min-Max Normalization, INDEX/MATCH, RANK |
-| 05 | Budget Tracking | Monthly budget vs actual with variance analysis | Power Query, Waterfall Chart, Conditional Logic |
+| 05 | Budget Tracking | Budget vs actual variance analysis across 6 cost categories over 12 months with executive dashboard | SUMIF, Pivot Tables, Conditional Formatting, Clustered Bar Chart |
 
 ---
 
@@ -179,6 +179,7 @@ pip install -r requirements.txt
 | Excel 02 - KPI Dashboard | Walmart Sales (45 stores, weekly sales 2010-2012) | [Kaggle](https://www.kaggle.com/datasets/mikhail1681/walmart-sales) |
 | Excel 03 - Inventory Parameters | Dynamic Inventory Analytics - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
 | Excel 04 - Supplier Evaluation | Suppliers Ranking Grades | [Kaggle](https://www.kaggle.com/datasets/michaelclodeemil/suppliers-ranking-grades) |
+| Excel 05 - Budget Tracking | Financial Dataset - Expenses Budget vs Actual | [Kaggle](https://www.kaggle.com/datasets/saharsyed/financial-dataset-expenses-budget-vs-actual) |
 
 ---
 
