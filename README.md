@@ -180,7 +180,7 @@ pip install -r requirements.txt
 | Excel 03 - Inventory Parameters | Dynamic Inventory Analytics - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
 | Excel 04 - Supplier Evaluation | Suppliers Ranking Grades | [Kaggle](https://www.kaggle.com/datasets/michaelclodeemil/suppliers-ranking-grades) |
 | Excel 05 - Budget Tracking | Financial Dataset - Expenses Budget vs Actual | [Kaggle](https://www.kaggle.com/datasets/saharsyed/financial-dataset-expenses-budget-vs-actual) |
-
+| Python 01 - Amazon Sales EDA | Amazon Sales Dataset | [Kaggle](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset) |
 ---
 
 ## 👤 Author
