@@ -85,8 +85,8 @@ data_analysis_projects/
 
 | # | Project | Description | Key Libraries |
 |---|---|---|---|
-| 01 | Sales EDA | Exploratory data analysis on sales dataset | pandas, matplotlib, seaborn |
-| 02 | Inventory Optimization | EOQ and reorder point calculation | numpy, scipy |
+| 01 | Sales EDA | Exploratory data analysis on Amazon India sales dataset to identify consumption patterns, discount effectiveness, and customer satisfaction | pandas, matplotlib, seaborn, re |
+| 02 | Inventory Optimization | Calculate optimal inventory parameters (EOQ, Safety Stock, Reorder Point) for 303 SKUs using 2.5 years of sales data with ABC classification and risk assessment | pandas, numpy, scipy, matplotlib, seaborn |
 | 03 | Web Scraping | Extract and structure data from public sources | requests, BeautifulSoup |
 | 04 | ETL Pipeline | Extract, transform and load data between sources | pandas, sqlalchemy |
 | 05 | Predictive Maintenance | Failure prediction using classification model | scikit-learn, pandas |
@@ -180,7 +180,9 @@ pip install -r requirements.txt
 | Excel 03 - Inventory Parameters | Dynamic Inventory Analytics - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
 | Excel 04 - Supplier Evaluation | Suppliers Ranking Grades | [Kaggle](https://www.kaggle.com/datasets/michaelclodeemil/suppliers-ranking-grades) |
 | Excel 05 - Budget Tracking | Financial Dataset - Expenses Budget vs Actual | [Kaggle](https://www.kaggle.com/datasets/saharsyed/financial-dataset-expenses-budget-vs-actual) |
-| Python 01 - Amazon Sales EDA | Amazon Sales Dataset | [Kaggle](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset) |
+| Python 01 - Sales EDA | Amazon Sales Dataset | [Kaggle](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset) |
+| Python 02 - Inventory Optimization | Dynamic Inventory Dataset - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
+
 ---
 
 ## 👤 Author
