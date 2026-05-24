@@ -59,9 +59,9 @@ data_analysis_projects/
 | Category | Tools |
 |---|---|
 | Spreadsheets | Microsoft Excel (Advanced), Power Query |
-| Programming | Python (pandas, numpy, matplotlib, seaborn, scikit-learn, requests, BeautifulSoup) |
+| Programming | Python (pandas, numpy, matplotlib, seaborn, scikit-learn, requests, BeautifulSoup, sqlalchemy) |
 | BI & Visualization | Tableau, Power BI |
-| Databases | SQL (MySQL / PostgreSQL) |
+| Databases | SQL (MySQL / PostgreSQL), SQLite |
 | Machine Learning | scikit-learn, statsmodels |
 | Version Control | Git, GitHub |
 
@@ -88,7 +88,7 @@ data_analysis_projects/
 | 01 | Sales EDA | Exploratory data analysis on Amazon India sales dataset to identify consumption patterns, discount effectiveness, and customer satisfaction | pandas, matplotlib, seaborn, re |
 | 02 | Inventory Optimization | Calculate optimal inventory parameters (EOQ, Safety Stock, Reorder Point) for 303 SKUs using 2.5 years of sales data with ABC classification and risk assessment | pandas, numpy, scipy, matplotlib, seaborn |
 | 03 | Web Scraping | Extract, clean and analyze book data from public e-commerce website. Demonstrates HTTP requests, HTML parsing with BeautifulSoup, pagination handling, and data export | requests, BeautifulSoup, pandas, matplotlib, seaborn |
-| 04 | ETL Pipeline | Extract, transform and load data between sources | pandas, sqlalchemy |
+| 04 | ETL Pipeline | End-to-end ETL pipeline on a 9-file relational e-commerce dataset (Olist, 100K orders). Covers multi-source extraction, datetime correction, null handling, feature engineering, category translation, SQLite loading via SQLAlchemy, and business SQL queries | pandas, numpy, sqlalchemy |
 | 05 | Predictive Maintenance | Failure prediction using classification model | scikit-learn, pandas |
 
 ---
@@ -183,6 +183,7 @@ pip install -r requirements.txt
 | Python 01 - Sales EDA | Amazon Sales Dataset | [Kaggle](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset) |
 | Python 02 - Inventory Optimization | Dynamic Inventory Dataset - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
 | Python 03 - Web Scraping | Books to Scrape (practice website) | [http://books.toscrape.com/](http://books.toscrape.com/) |
+| Python 04 - ETL Pipeline | Brazilian E-Commerce Public Dataset by Olist | [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
 
 ---
 
