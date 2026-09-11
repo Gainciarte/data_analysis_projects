@@ -16,53 +16,24 @@ data_analysis_projects/
 │   ├── 04_supplier_evaluation/
 │   └── 05_budget_tracking/
 │
-├── python/
-│   ├── 01_sales_eda/
-│   ├── 02_inventory_optimization/
-│   ├── 03_web_scraping/
-│   ├── 04_etl_pipeline/
-│   └── 05_predictive_maintenance/
-│
-├── tableau/
-│   ├── 01_logistics_dashboard/
-│   ├── 02_sales_performance/
-│   ├── 03_customer_segmentation/
-│   ├── 04_supply_chain_map/
-│   └── 05_financial_overview/
-│
-├── power_bi/
-│   ├── 01_warehouse_kpis/
-│   ├── 02_procurement_analysis/
-│   ├── 03_project_tracking/
-│   ├── 04_hr_headcount/
-│   └── 05_operational_costs/
-│
-├── sql/
-│   ├── 01_inventory_queries/
-│   ├── 02_sales_reporting/
-│   ├── 03_customer_analysis/
-│   ├── 04_supply_chain_queries/
-│   └── 05_data_cleaning/
-│
-└── machine_learning/
-    ├── 01_demand_forecasting/
-    ├── 02_anomaly_detection/
-    ├── 03_classification_model/
-    ├── 04_clustering_customers/
-    └── 05_regression_analysis/
+└── python/
+    ├── 01_sales_eda/
+    ├── 02_inventory_optimization/
+    ├── 03_web_scraping/
+    └── 04_etl_pipeline/
 ```
+
+See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL, Machine Learning, and a 5th Python project).
 
 ---
 
-## 🔧 Tools & Technologies
+## 🔧 Tools & Technologies (in use)
 
 | Category | Tools |
 |---|---|
 | Spreadsheets | Microsoft Excel (Advanced), Power Query |
-| Programming | Python (pandas, numpy, matplotlib, seaborn, scikit-learn, requests, BeautifulSoup, sqlalchemy) |
-| BI & Visualization | Tableau, Power BI |
-| Databases | SQL (MySQL / PostgreSQL), SQLite |
-| Machine Learning | scikit-learn, statsmodels |
+| Programming | Python (pandas, numpy, scipy, matplotlib, seaborn, requests, BeautifulSoup, sqlalchemy) |
+| Databases | SQLite |
 | Version Control | Git, GitHub |
 
 ---
@@ -85,59 +56,10 @@ data_analysis_projects/
 
 | # | Project | Description | Key Libraries |
 |---|---|---|---|
-| 01 | Sales EDA | Exploratory data analysis on Amazon India sales dataset to identify consumption patterns, discount effectiveness, and customer satisfaction | pandas, matplotlib, seaborn, re |
+| 01 | Sales EDA | Exploratory data analysis on Amazon India sales dataset to identify consumption patterns, discount effectiveness, and customer satisfaction | pandas, matplotlib, seaborn |
 | 02 | Inventory Optimization | Calculate optimal inventory parameters (EOQ, Safety Stock, Reorder Point) for 303 SKUs using 2.5 years of sales data with ABC classification and risk assessment | pandas, numpy, scipy, matplotlib, seaborn |
-| 03 | Web Scraping | Extract, clean and analyze book data from public e-commerce website. Demonstrates HTTP requests, HTML parsing with BeautifulSoup, pagination handling, and data export | requests, BeautifulSoup, pandas, matplotlib, seaborn |
+| 03 | Web Scraping | Extract, clean and analyze book data from public e-commerce website. Demonstrates HTTP requests, HTML parsing with BeautifulSoup, pagination handling, and data export | requests, BeautifulSoup, pandas |
 | 04 | ETL Pipeline | End-to-end ETL pipeline on a 9-file relational e-commerce dataset (Olist, 100K orders). Covers multi-source extraction, datetime correction, null handling, feature engineering, category translation, SQLite loading via SQLAlchemy, and business SQL queries | pandas, numpy, sqlalchemy |
-| 05 | Predictive Maintenance | Failure prediction using classification model | scikit-learn, pandas |
-
----
-
-### 📊 Tableau
-
-| # | Project | Description |
-|---|---|---|
-| 01 | Logistics Dashboard | End-to-end shipment tracking and on-time delivery KPIs |
-| 02 | Sales Performance | Regional sales breakdown with trend analysis |
-| 03 | Customer Segmentation | RFM segmentation visualized by cluster |
-| 04 | Supply Chain Map | Geographic flow map of supply chain network |
-| 05 | Financial Overview | Revenue, cost and margin summary for management |
-
----
-
-### 📈 Power BI
-
-| # | Project | Description |
-|---|---|---|
-| 01 | Warehouse KPIs | Fill rate, turnover, accuracy - warehouse operations report |
-| 02 | Procurement Analysis | Spend analysis by category, supplier and period |
-| 03 | Project Tracking | Gantt-style project progress with milestone tracking |
-| 04 | HR Headcount | Headcount evolution, turnover and department breakdown |
-| 05 | Operational Costs | Cost center analysis with drill-through by category |
-
----
-
-### 🗄️ SQL
-
-| # | Project | Description |
-|---|---|---|
-| 01 | Inventory Queries | Stock level queries, reorder alerts, dead stock detection |
-| 02 | Sales Reporting | Revenue aggregation, growth rates, top products |
-| 03 | Customer Analysis | Purchase frequency, lifetime value, retention rate |
-| 04 | Supply Chain Queries | Lead time analysis, supplier performance |
-| 05 | Data Cleaning | Deduplication, null handling, type normalization |
-
----
-
-### 🤖 Machine Learning
-
-| # | Project | Description |
-|---|---|---|
-| 01 | Demand Forecasting | Time series model to predict future demand |
-| 02 | Anomaly Detection | Detect outliers in operational or sensor data |
-| 03 | Classification Model | Binary classification for risk or failure prediction |
-| 04 | Customer Clustering | Unsupervised segmentation using K-Means |
-| 05 | Regression Analysis | Predict continuous variable (cost, time, quantity) |
 
 ---
 
@@ -147,8 +69,6 @@ data_analysis_projects/
 
 - Python 3.9+
 - pip or conda
-- Power BI Desktop (for .pbix files)
-- Tableau Public or Tableau Desktop (for .twbx files)
 
 ### Python setup
 
@@ -165,9 +85,19 @@ pip install -r requirements.txt
 - Each project folder contains its own `README.md` with objective, data source, methodology and results.
 - Raw data files are **not included** in this repository due to file size. Each project README links to the original data source.
 - Datasets used are either publicly available or anonymized synthetic data.
-- Projects are added progressively - check back for updates.
 - Excel 01: Stock Status analysis was excluded as the dataset contains sales data only, not inventory levels. This limitation is documented in the project README.
-- Excel 03: renamed from Demand Forecast to Inventory Parameters to better reflect the actual analysis performed.
+
+---
+
+## 🗺️ Roadmap
+
+Planned expansions — not started yet, listed here separately so the structure above only reflects what's actually built:
+
+- **Python 05 — Predictive Maintenance**: failure prediction using a classification model (scikit-learn, pandas).
+- **Tableau**: Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview.
+- **Power BI**: Warehouse KPIs, Procurement Analysis, Project Tracking, HR Headcount, Operational Costs.
+- **SQL** (MySQL/PostgreSQL): Inventory Queries, Sales Reporting, Customer Analysis, Supply Chain Queries, Data Cleaning.
+- **Machine Learning** (scikit-learn, statsmodels): Demand Forecasting, Anomaly Detection, Classification Model, Customer Clustering, Regression Analysis.
 
 ---
 
