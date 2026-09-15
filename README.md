@@ -115,7 +115,7 @@ Planned expansions — not started yet, listed here separately so the structure 
 | Python 02 - Inventory Optimization | Dynamic Inventory Dataset - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
 | Python 03 - Web Scraping | Books to Scrape (practice website) | [http://books.toscrape.com/](http://books.toscrape.com/) |
 | Python 04 - ETL Pipeline | Brazilian E-Commerce Public Dataset by Olist | [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
-| Python 05 - Predictive Maintenance | AI4I 2020 Predictive Maintenance Dataset | [UCI ML Repository](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset) |
+| Python 05 - Predictive Maintenance | AI4I 2020 Predictive Maintenance Dataset | [Kaggle](https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020) |
 
 ---
 

@@ -10,7 +10,7 @@ Build a machine learning pipeline to predict machine failure in an industrial mi
 
 | Field | Detail |
 |---|---|
-| Source | UCI Machine Learning Repository - [AI4I 2020 Predictive Maintenance Dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset) |
+| Source | Kaggle - [AI4I 2020 Predictive Maintenance Dataset](https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020) |
 | Type | Synthetic dataset modeled on real industrial milling machine behavior |
 | Records | 10,000 machine operating instances |
 | File | `ai4i2020.csv` |
