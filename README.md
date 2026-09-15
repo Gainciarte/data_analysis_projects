@@ -20,10 +20,11 @@ data_analysis_projects/
     ├── 01_sales_eda/
     ├── 02_inventory_optimization/
     ├── 03_web_scraping/
-    └── 04_etl_pipeline/
+    ├── 04_etl_pipeline/
+    └── 05_predictive_maintenance/
 ```
 
-See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL, Machine Learning, and a 5th Python project).
+See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL, Machine Learning).
 
 ---
 
@@ -60,6 +61,7 @@ See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL,
 | 02 | Inventory Optimization | Calculate optimal inventory parameters (EOQ, Safety Stock, Reorder Point) for 303 SKUs using 2.5 years of sales data with ABC classification and risk assessment | pandas, numpy, scipy, matplotlib, seaborn |
 | 03 | Web Scraping | Extract, clean and analyze book data from public e-commerce website. Demonstrates HTTP requests, HTML parsing with BeautifulSoup, pagination handling, and data export | requests, BeautifulSoup, pandas |
 | 04 | ETL Pipeline | End-to-end ETL pipeline on a 9-file relational e-commerce dataset (Olist, 100K orders). Covers multi-source extraction, datetime correction, null handling, feature engineering, category translation, SQLite loading via SQLAlchemy, and business SQL queries | pandas, numpy, sqlalchemy |
+| 05 | Predictive Maintenance | Binary classification of machine failure on 10,000 industrial sensor records under severe class imbalance (3.39%). Compares Logistic Regression vs. Random Forest (ROC-AUC 0.978, PR-AUC 0.863) with feature importance analysis | pandas, numpy, scikit-learn, matplotlib, seaborn |
 
 ---
 
@@ -93,7 +95,6 @@ pip install -r requirements.txt
 
 Planned expansions — not started yet, listed here separately so the structure above only reflects what's actually built:
 
-- **Python 05 — Predictive Maintenance**: failure prediction using a classification model (scikit-learn, pandas).
 - **Tableau**: Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview.
 - **Power BI**: Warehouse KPIs, Procurement Analysis, Project Tracking, HR Headcount, Operational Costs.
 - **SQL** (MySQL/PostgreSQL): Inventory Queries, Sales Reporting, Customer Analysis, Supply Chain Queries, Data Cleaning.
@@ -114,6 +115,7 @@ Planned expansions — not started yet, listed here separately so the structure 
 | Python 02 - Inventory Optimization | Dynamic Inventory Dataset - Kaizen Analytics | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
 | Python 03 - Web Scraping | Books to Scrape (practice website) | [http://books.toscrape.com/](http://books.toscrape.com/) |
 | Python 04 - ETL Pipeline | Brazilian E-Commerce Public Dataset by Olist | [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
+| Python 05 - Predictive Maintenance | AI4I 2020 Predictive Maintenance Dataset | [UCI ML Repository](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset) |
 
 ---
 
