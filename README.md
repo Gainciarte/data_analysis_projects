@@ -44,11 +44,11 @@ data_analysis_projects/
 
 | # | Project | Description | Key Skills |
 |---|---|---|---|
-| 01 | Inventory Control | ABC/XYZ analysis on Amazon e-commerce sales data. Classifies 7,082 SKUs by value and demand variability over 3 months of sales | Pivot Tables, SUMIF, COUNTIF, Conditional Formatting, VLOOKUP |
-| 02 | KPI Dashboard | Operational sales KPI dashboard using Walmart weekly sales data across 45 stores and 3 years | Dashboard Design, Slicers, Dynamic Charts, Named Ranges |
-| 03 | Inventory Parameters | Safety stock, reorder point, EOQ and value at risk calculation for 290 SKUs using 25 months of real sales history | NORM.S.INV, VLOOKUP, SQRT, CEILING, Pivot Tables |
-| 04 | Supplier Evaluation | Multi-criteria decision model (MCDM) to evaluate and rank 35 suppliers across 12 weighted criteria | SUMPRODUCT, Min-Max Normalization, INDEX/MATCH, RANK |
-| 05 | Budget Tracking | Budget vs actual variance analysis across 6 cost categories over 12 months with executive dashboard | SUMIF, Pivot Tables, Conditional Formatting, Clustered Bar Chart |
+| 01 | [Inventory Control](excel/01_inventory_control) | ABC/XYZ analysis on Amazon e-commerce sales data. Classifies 7,082 SKUs by value and demand variability over 3 months of sales | Pivot Tables, SUMIF, COUNTIF, Conditional Formatting, VLOOKUP |
+| 02 | [KPI Dashboard](excel/02_kpi_dashboard) | Operational sales KPI dashboard using Walmart weekly sales data across 45 stores and 3 years | Dashboard Design, Slicers, Dynamic Charts, Named Ranges |
+| 03 | [Inventory Parameters](excel/03_inventory_parameters) | Safety stock, reorder point, EOQ and value at risk calculation for 290 SKUs using 25 months of real sales history | NORM.S.INV, VLOOKUP, SQRT, CEILING, Pivot Tables |
+| 04 | [Supplier Evaluation](excel/04_supplier_evaluation) | Multi-criteria decision model (MCDM) to evaluate and rank 35 suppliers across 12 weighted criteria | SUMPRODUCT, Min-Max Normalization, INDEX/MATCH, RANK |
+| 05 | [Budget Tracking](excel/05_budget_tracking) | Budget vs actual variance analysis across 6 cost categories over 12 months with executive dashboard | SUMIF, Pivot Tables, Conditional Formatting, Clustered Bar Chart |
 
 ---
 
@@ -56,11 +56,11 @@ data_analysis_projects/
 
 | # | Project | Description | Key Libraries |
 |---|---|---|---|
-| 01 | Sales EDA | Exploratory data analysis on Amazon India sales dataset to identify consumption patterns, discount effectiveness, and customer satisfaction | pandas, matplotlib, seaborn |
-| 02 | Inventory Optimization | Calculate optimal inventory parameters (EOQ, Safety Stock, Reorder Point) for 303 SKUs using 2.5 years of sales data with ABC classification and risk assessment | pandas, numpy, scipy, matplotlib, seaborn |
-| 03 | Web Scraping | Extract, clean and analyze book data from public e-commerce website. Demonstrates HTTP requests, HTML parsing with BeautifulSoup, pagination handling, and data export | requests, BeautifulSoup, pandas |
-| 04 | ETL Pipeline | End-to-end ETL pipeline on a 9-file relational e-commerce dataset (Olist, 100K orders). Covers multi-source extraction, datetime correction, null handling, feature engineering, category translation, SQLite loading via SQLAlchemy, and business SQL queries | pandas, numpy, sqlalchemy |
-| 05 | Predictive Maintenance | Binary classification of machine failure on 10,000 industrial sensor records under severe class imbalance (3.39%). Compares Logistic Regression vs. Random Forest (ROC-AUC 0.978, PR-AUC 0.863) with feature importance analysis | pandas, numpy, scikit-learn, matplotlib, seaborn |
+| 01 | [Sales EDA](python/01_sales_eda) | Exploratory data analysis on Amazon India sales dataset to identify consumption patterns, discount effectiveness, and customer satisfaction | pandas, matplotlib, seaborn |
+| 02 | [Inventory Optimization](python/02_inventory_optimization) | Calculate optimal inventory parameters (EOQ, Safety Stock, Reorder Point) for 303 SKUs using 2.5 years of sales data with ABC classification and risk assessment | pandas, numpy, scipy, matplotlib, seaborn |
+| 03 | [Web Scraping](python/03_web_scraping) | Extract, clean and analyze book data from public e-commerce website. Demonstrates HTTP requests, HTML parsing with BeautifulSoup, pagination handling, and data export | requests, BeautifulSoup, pandas |
+| 04 | [ETL Pipeline](python/04_etl_pipeline) | End-to-end ETL pipeline on a 9-file relational e-commerce dataset (Olist, 100K orders). Covers multi-source extraction, datetime correction, null handling, feature engineering, category translation, SQLite loading via SQLAlchemy, and business SQL queries | pandas, numpy, sqlalchemy |
+| 05 | [Predictive Maintenance](python/05_predictive_maintenance) | Binary classification of machine failure on 10,000 industrial sensor records under severe class imbalance (3.39%). Compares Logistic Regression vs. Random Forest (ROC-AUC 0.978, PR-AUC 0.863) with feature importance analysis | pandas, numpy, scikit-learn, matplotlib, seaborn |
 
 ---
 
@@ -72,11 +72,11 @@ Each project has numbered `.sql` scripts that run top to bottom, a small Python 
 
 | # | Project | Description | Key Skills |
 |---|---|---|---|
-| 01 | Inventory Queries | Stock status, reorder risk, ABC/XYZ, dead stock and overstock for 303 SKUs, with reusable views | CTEs, window functions, `FILTER`, views |
-| 02 | Sales Reporting | 33,919 orders as a small star schema: monthly KPIs, MoM/YoY, running totals, moving averages and top-N rankings | `LAG`, `RANK`, running `SUM`, materialized view |
-| 03 | Customer Analysis | RFM scoring, repeat purchase, customer lifetime value and monthly cohort retention on 1M+ real transaction lines | `NTILE`, cohorts, indexes, constraints |
-| 04 | Supply Chain Queries | Vendor lead times, replenishment timing, revenue at risk and warehouse comparison | `ROLLUP`, `PERCENTILE_CONT`, `NTILE` |
-| 05 | Data Cleaning | Raw Amazon India product export cleaned in SQL only: profiling, deduplication, quarantine table, validation checks | Text cleaning, `UNNEST`, validation queries |
+| 01 | [Inventory Queries](sql/01_inventory_queries) | Stock status, reorder risk, ABC/XYZ, dead stock and overstock for 303 SKUs, with reusable views | CTEs, window functions, `FILTER`, views |
+| 02 | [Sales Reporting](sql/02_sales_reporting) | 33,919 orders as a small star schema: monthly KPIs, MoM/YoY, running totals, moving averages and top-N rankings | `LAG`, `RANK`, running `SUM`, materialized view |
+| 03 | [Customer Analysis](sql/03_customer_analysis) | RFM scoring, repeat purchase, customer lifetime value and monthly cohort retention on 1M+ real transaction lines | `NTILE`, cohorts, indexes, constraints |
+| 04 | [Supply Chain Queries](sql/04_supply_chain_queries) | Vendor lead times, replenishment timing, revenue at risk and warehouse comparison | `ROLLUP`, `PERCENTILE_CONT`, `NTILE` |
+| 05 | [Data Cleaning](sql/05_data_cleaning) | Raw Amazon India product export cleaned in SQL only: profiling, deduplication, quarantine table, validation checks | Text cleaning, `UNNEST`, validation queries |
 
 ---
 
@@ -86,11 +86,11 @@ Each project is an executed Jupyter notebook with its README, saved results and 
 
 | # | Project | Description | Key Libraries |
 |---|---|---|---|
-| 01 | Demand Forecasting | Monthly demand of the top SKUs: naive, moving average, Holt-Winters/ETS and SARIMA with rolling-origin evaluation, and the effect of forecast error on safety stock | statsmodels, pandas |
-| 02 | Anomaly Detection | Isolation Forest, LOF and robust z-scores on industrial sensor data and on order quantities with injected spikes | scikit-learn |
-| 03 | Classification Model | Late-delivery prediction on public USAID health-commodity shipments (logistic regression, random forest, gradient boosting) with a chronological test | scikit-learn |
-| 04 | Customer Clustering | RFM + KMeans/hierarchical clustering of UCI Online Retail II customers, with segment profiles and a forward-looking validation | scikit-learn, scipy |
-| 05 | Regression Analysis | Freight-cost regression (OLS with robust errors vs regularized and tree models) with grouped cross-validation | statsmodels, scikit-learn |
+| 01 | [Demand Forecasting](ml/01_demand_forecasting) | Monthly demand of the top SKUs: naive, moving average, Holt-Winters/ETS and SARIMA with rolling-origin evaluation, and the effect of forecast error on safety stock | statsmodels, pandas |
+| 02 | [Anomaly Detection](ml/02_anomaly_detection) | Isolation Forest, LOF and robust z-scores on industrial sensor data and on order quantities with injected spikes | scikit-learn |
+| 03 | [Classification Model](ml/03_classification_model) | Late-delivery prediction on public USAID health-commodity shipments (logistic regression, random forest, gradient boosting) with a chronological test | scikit-learn |
+| 04 | [Customer Clustering](ml/04_customer_clustering) | RFM + KMeans/hierarchical clustering of UCI Online Retail II customers, with segment profiles and a forward-looking validation | scikit-learn, scipy |
+| 05 | [Regression Analysis](ml/05_regression_analysis) | Freight-cost regression (OLS with robust errors vs regularized and tree models) with grouped cross-validation | statsmodels, scikit-learn |
 
 ---
 
