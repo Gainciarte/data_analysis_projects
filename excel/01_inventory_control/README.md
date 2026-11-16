@@ -71,6 +71,14 @@ Classification by **demand variability** using Coefficient of Variation (CV = St
 
 ---
 
+## Results Preview
+
+![Abc pareto](images/01_abc_pareto.png)
+
+![Abc xyz matrix](images/02_abc_xyz_matrix.png)
+
+---
+
 ## Key Findings
 
 1. **Pareto confirmed:** 27.6% of SKUs (Class A) represent 80% of total sales value.

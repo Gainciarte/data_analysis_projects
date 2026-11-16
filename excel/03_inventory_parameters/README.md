@@ -89,6 +89,12 @@ Calculate key inventory management parameters for a 290-SKU catalog using 25 mon
 
 ---
 
+## Results Preview
+
+![Stock status value at risk](images/01_stock_status_value_at_risk.png)
+
+---
+
 ## Key Findings
 
 1. **49% of SKUs require immediate attention** - 83 SKUs below safety stock (CRITICAL) and 60 below reorder point (REORDER).
