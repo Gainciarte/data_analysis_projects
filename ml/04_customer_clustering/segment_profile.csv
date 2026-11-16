@@ -1,0 +1,5 @@
+cluster,customers,recency_median,frequency_median,monetary_median,revenue,monetary_mean,share_customers_%,share_revenue_%,segment
+1,1110,15.0,13.0,5117.68,12217512.16,11006.77,18.97,71.58,Champions
+3,1468,157.0,5.0,1580.42,3150628.18,2146.2,25.09,18.46,At risk (formerly big)
+0,1220,23.0,3.0,707.66,1002636.17,821.83,20.85,5.87,Recent / occasional
+2,2054,398.0,1.0,291.43,697806.21,339.73,35.1,4.09,Lapsed / low value

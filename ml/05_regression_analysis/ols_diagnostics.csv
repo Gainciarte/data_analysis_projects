@@ -1,0 +1,8 @@
+,value
+breusch_pagan_p,0.0
+shapiro_p,0.0
+resid_skew,-0.46901
+resid_excess_kurtosis,7.12966
+n_cooks_gt_4_over_n,250.0
+weight_elasticity_full,0.35958
+weight_elasticity_no_influential,0.44468

@@ -1,0 +1,6 @@
+,Safety stock (units),Safety stock value ($),vs classical,vs naive-error
+Demand std-dev (classical),566329.2341,2697729.6411,0.0,0.0631
+Naive forecast error,532727.7867,2782299.998,-0.0593,0.0
+MA(3) forecast error,498029.79,2394344.7839,-0.1206,-0.0651
+SES forecast error,481029.6536,2363873.369,-0.1506,-0.097
+ETS (auto) forecast error,478104.3868,2377678.8947,-0.1558,-0.1025

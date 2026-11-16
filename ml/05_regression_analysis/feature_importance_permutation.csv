@@ -1,0 +1,11 @@
+feature,r2_drop,std
+log_weight,0.47867,0.02016
+log_ship_value,0.08964,0.00377
+log_ship_qty,0.08406,0.00842
+Country_g,0.08356,0.01004
+Shipment Mode_g,0.07547,0.00598
+Vendor INCO Term_g,0.0326,0.00311
+log_ship_lines,0.00372,0.00062
+Product Group_g,0.00296,0.00075
+Vendor_g,0.00216,0.00254
+year,0.0,0.0

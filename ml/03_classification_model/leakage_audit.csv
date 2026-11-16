@@ -1,0 +1,6 @@
+,value
+shuffled_labels_cv_roc_auc,0.4764
+cv_roc_auc,0.8958
+test_roc_auc,0.8299
+with_weight_freight_cv_roc_auc,0.897
+planned_lead_days_alone_roc_auc,0.4149

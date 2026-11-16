@@ -1,0 +1,5 @@
+cluster,customers,recency_median,frequency_median,past_monetary_median,repurchase_rate,future_spend_mean,future_spend_total,share_future_revenue_%,share_customers_%,segment
+3,726,20.0,13.0,5213.275,0.931,4116.826,2988815.41,65.57,14.693,Champions
+1,654,19.0,3.0,902.665,0.702,562.072,367594.82,8.064,13.236,Recent / occasional
+0,1505,176.0,4.0,1333.7,0.573,515.761,776220.43,17.029,30.459,At risk (formerly big)
+2,2056,239.0,1.0,286.115,0.281,206.987,425566.0,9.336,41.611,Lapsed / low value
