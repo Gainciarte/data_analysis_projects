@@ -2,7 +2,7 @@
 
 A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
 
-**Status:** 20 of 30 planned projects completed (Excel, Python, SQL and Machine Learning). Tableau and Power BI projects are in progress and listed in the [Roadmap](#️-roadmap).
+**Status:** 20 of 30 planned projects completed (Excel, Python, SQL and Machine Learning). The 10 Tableau and Power BI dashboards are in progress (see [Dashboards](#-tableau--power-bi-in-progress)); they will be added to the project tables as each one is finished and published.
 
 ---
 
@@ -30,6 +30,7 @@ data_analysis_projects/
 | Spreadsheets | Microsoft Excel (Advanced), Power Query |
 | Programming | Python (pandas, numpy, scipy, matplotlib, seaborn, requests, BeautifulSoup, sqlalchemy) |
 | Databases | PostgreSQL 16 (SQL projects), SQLite |
+| BI (in progress) | Tableau Public, Power BI Desktop |
 | Machine Learning | scikit-learn, statsmodels |
 | Version Control | Git, GitHub |
 
@@ -41,7 +42,7 @@ data_analysis_projects/
 
 | # | Project | Description | Key Skills |
 |---|---|---|---|
-| 01 | Inventory Control | ABC/XYZ analysis on Amazon e-commerce sales data. Classifies 7,116 SKUs by value and demand variability across 12 months | Pivot Tables, SUMIF, COUNTIF, Conditional Formatting, VLOOKUP |
+| 01 | Inventory Control | ABC/XYZ analysis on Amazon e-commerce sales data. Classifies 7,082 SKUs by value and demand variability over 3 months of sales | Pivot Tables, SUMIF, COUNTIF, Conditional Formatting, VLOOKUP |
 | 02 | KPI Dashboard | Operational sales KPI dashboard using Walmart weekly sales data across 45 stores and 3 years | Dashboard Design, Slicers, Dynamic Charts, Named Ranges |
 | 03 | Inventory Parameters | Safety stock, reorder point, EOQ and value at risk calculation for 290 SKUs using 25 months of real sales history | NORM.S.INV, VLOOKUP, SQRT, CEILING, Pivot Tables |
 | 04 | Supplier Evaluation | Multi-criteria decision model (MCDM) to evaluate and rank 35 suppliers across 12 weighted criteria | SUMPRODUCT, Min-Max Normalization, INDEX/MATCH, RANK |
@@ -91,6 +92,17 @@ Each project is an executed Jupyter notebook with its README, saved results and 
 
 ---
 
+### 📈 Tableau & Power BI (in progress)
+
+Not published yet. Each dashboard will be listed in a table like the ones above, with its data source, a screenshot and a link, only once it is finished.
+
+| Tool | Planned projects | Status |
+|---|---|---|
+| Tableau | Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview | 🚧 In progress |
+| Power BI | Warehouse KPIs, Procurement Analysis, Project Tracking, HR Headcount, Operational Costs | 🚧 In progress |
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -124,17 +136,14 @@ python run_<name>.py
 - Each project folder contains its own `README.md` with objective, data source, methodology and results.
 - Small datasets are included in the repository; large ones are **not**, and each project README links to the original source (some loaders download the file on first run).
 - Datasets used are either publicly available or anonymized synthetic data.
-- Excel 01: Stock Status analysis was excluded as the dataset contains sales data only, not inventory levels. This limitation is documented in the project README.
+- Excel 01: Stock Status analysis was excluded as the dataset contains sales data only, not inventory levels. A date-parsing issue in the workbook's XYZ sheet was found and corrected in the README (see `excel/01_inventory_control/verify_xyz.py`). Both points are documented in the project README.
 - The Kaizen Analytics inventory dataset looks synthetic (for example, unit price is cost / 0.7 for every SKU), so margin-based conclusions on it are not meaningful. This is flagged in the projects that use it.
 
 ---
 
 ## 🗺️ Roadmap
 
-Planned expansions, listed separately so the structure above only reflects what is actually built:
-
-- **Tableau**: Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview.
-- **Power BI**: Warehouse KPIs, Procurement Analysis, Project Tracking, HR Headcount, Operational Costs.
+The repository structure above only shows what is built. Remaining work: the 5 Tableau and 5 Power BI dashboards (see the in-progress table), then a final pass on the Excel 01 workbook so its XYZ sheet matches the corrected results.
 
 ---
 
