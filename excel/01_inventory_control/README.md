@@ -34,11 +34,11 @@ Classification by **annual sales value** (Amount):
 
 | Class | Criterion | SKUs | % of SKUs |
 |---|---|---|---|
-| A | Top 80% of total value | 1,967 | 27.6% |
-| B | Next 15% of total value | 2,143 | 30.1% |
-| C | Bottom 5% of total value | 2,972 | 41.8% |
+| A | Top 80% of total value | 1,967 | 27.8% |
+| B | Next 15% of total value | 2,143 | 30.3% |
+| C | Bottom 5% of total value | 2,972 | 42.0% |
 
-> Note: ABC was calculated using sales value (revenue), not cost value, as cost data was not available in this dataset.
+> Note: ABC was calculated using sales value (revenue), not cost value, as cost data was not available in this dataset. Percentages use the 7,082 classified SKUs as denominator; the workbook's `Summary` sheet hard-codes 7,116 in its percentage formulas, which is why it shows slightly different shares.
 
 ### XYZ Analysis
 Classification by **demand variability** using Coefficient of Variation (CV = Std Dev / Mean of monthly Qty):
@@ -94,7 +94,7 @@ CV is computed over the three full months (April–June 2022) for the 7,081 SKUs
 
 ## Key Findings
 
-1. **Pareto confirmed:** 27.6% of SKUs (Class A) represent 80% of total sales value.
+1. **Pareto confirmed:** 27.8% of SKUs (Class A) represent 80% of total sales value.
 2. **Demand is variable, with a long erratic tail:** 41.9% of SKUs are Class Z and 21.6% are Class X. Z is concentrated in the low-value tail (2,147 of the 2,972 Class C SKUs), not in the high-value SKUs.
 3. **High-value SKUs are the most predictable:** 1,727 of the 1,967 Class A SKUs are X or Y (only 240 are Z). Class A–X (760 SKUs) is the natural candidate for fixed-cycle replenishment and tight control; C–Z (2,147 SKUs) calls for make-to-order or minimal stock.
 4. **Policy by cell, not one rule for the catalog:** A–X/A–Y suit forecast-based replenishment with safety stock; B–Y and C–Y suit periodic review; Z items should not carry safety stock without a business case.
