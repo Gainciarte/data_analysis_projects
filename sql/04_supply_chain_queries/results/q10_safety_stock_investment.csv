@@ -1,0 +1,11 @@
+vendor_name,safety_stock_value,lead_time_demand_value,current_stock_value,pct_of_total_safety_stock
+Apotex Corp,3192650,2689487,4604155.0,15.8
+Cixi Group,2559815,2113535,5944117.0,12.7
+Lake Ltd,2210530,1068941,6742950.0,11.0
+Mylan Group,1615838,2121517,2503290.0,8.0
+Heritage,1544948,1318229,4173786.0,7.7
+McKesson Corp,1334854,1060075,2966322.0,6.6
+Kinray Ltd,1228942,715975,3784050.0,6.1
+Major Corp,1050357,678216,3777364.0,5.2
+Macoven Group,1005709,778244,2276799.0,5.0
+Accord Ltd,857834,847310,2331136.0,4.3

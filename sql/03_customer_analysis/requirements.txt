@@ -1,0 +1,5 @@
+pgserver
+pandas
+python-calamine
+matplotlib
+psycopg2-binary

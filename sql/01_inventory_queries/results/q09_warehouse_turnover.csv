@@ -1,0 +1,5 @@
+warehouse_id,city,province,skus,inventory_value,cogs_12m,turnover_x,days_inventory
+GUT930,Martensville,Saskatchewan,101,16858274.0,27952663.0,1.66,220.0
+AXW291,Stanstead,Quebec,69,15498259.0,29484206.0,1.9,192.0
+FLR025,Estevan,Saskatchewan,52,11000338.0,12625632.0,1.15,318.0
+NXH382,Saint-Pamphile,Quebec,81,10773607.0,20999179.0,1.95,187.0

@@ -1,0 +1,6 @@
+order_window,skus,pct_skus,annual_purchase_value
+1) Late (already inside lead time),50,17.2,41354562.0
+2) Order within 30 days,21,7.2,11629156.0
+3) Order in 31-90 days,22,7.6,4579796.0
+4) Order in 91-365 days,88,30.3,24819105.0
+5) More than 1 year away,109,37.6,8679061.0

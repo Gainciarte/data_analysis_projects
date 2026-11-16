@@ -1,0 +1,13 @@
+warehouse_id,rank_in_warehouse,vendor_name,skus,stock_value,pct_of_warehouse
+AXW291,1,Cixi Group,13,3928764.0,25.3
+AXW291,2,Mylan Group,10,2394499.0,15.5
+AXW291,3,"ALK-Abello, Corp",10,2151315.0,13.9
+FLR025,1,Major Corp,9,2087823.0,19.0
+FLR025,2,Heritage,5,2023728.0,18.4
+FLR025,3,Sun Ltd,5,1910346.0,17.4
+GUT930,1,Lake Ltd,15,4120824.0,24.4
+GUT930,2,Allermed Group,15,3473973.0,20.6
+GUT930,3,Apotex Corp,10,2119511.0,12.6
+NXH382,1,Sun Ltd,9,2038722.0,18.9
+NXH382,2,"ALK-Abello, Corp",9,1658359.0,15.4
+NXH382,3,Lake Ltd,15,1412467.0,13.1

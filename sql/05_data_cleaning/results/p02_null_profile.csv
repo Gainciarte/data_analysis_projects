@@ -1,0 +1,10 @@
+col,nulls,pct_null
+product_link,375,25.61
+user_id,337,23.02
+rating_count,3,0.2
+actual_price,1,0.07
+category,1,0.07
+discount_percentage,1,0.07
+discounted_price,1,0.07
+rating,1,0.07
+product_name,0,0.0

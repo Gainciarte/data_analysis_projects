@@ -1,0 +1,11 @@
+check_name,violations
+category is never null,0
+discount_pct matches recomputed value (tolerance 0.6 pp),0
+discounted_price <= actual_price,0
+every product_id looks like an ASIN (B + 9 alphanumerics),0
+no leading/trailing/double spaces in product_name,0
+no mojibake left in product_name,0
+prices are positive,0
+product_id is unique,0
+rating between 0 and 5,0
+reviewers reference an existing product,0

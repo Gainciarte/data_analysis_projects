@@ -1,0 +1,6 @@
+step,rows_kept
+raw transaction lines,1067371
+minus cancellations / adjustments (invoice starts with a letter),1047871
+minus non-positive quantity or price,1041669
+minus guest checkouts (no customer id),805549
+"minus non-product stock codes (POST, DOT, M, BANK CHARGES ...) = sales_lines",802632

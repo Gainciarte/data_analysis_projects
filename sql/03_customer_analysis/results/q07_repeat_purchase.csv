@@ -1,0 +1,6 @@
+order_bucket,customers,pct_customers,repeat_rate_pct
+1) 1 order,1618,27.6,72.4
+2) 2 orders,945,16.1,72.4
+3) 3-5 orders,1503,25.7,72.4
+4) 6-10 orders,922,15.8,72.4
+5) 11+ orders,864,14.8,72.4

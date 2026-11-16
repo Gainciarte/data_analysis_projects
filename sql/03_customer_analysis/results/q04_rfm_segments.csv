@@ -1,0 +1,9 @@
+segment,customers,pct_customers,revenue,pct_revenue,avg_recency_days,avg_orders,avg_spend
+Champions,1281,21.9,11869560,68.1,20.0,17.1,9266.0
+Loyal Customers,699,11.9,1863209,10.7,84.0,7.7,2666.0
+At Risk (high value),360,6.2,1074940,6.2,343.0,7.6,2986.0
+Hibernating,1085,18.5,836821,4.8,346.0,2.0,771.0
+Potential Loyalists,699,11.9,804168,4.6,59.0,3.1,1150.0
+New / Promising,446,7.6,414196,2.4,28.0,1.5,929.0
+Lost,897,15.3,364623,2.1,554.0,1.2,406.0
+Needs Attention,385,6.6,206933,1.2,106.0,1.4,537.0

@@ -1,0 +1,3 @@
+segment,skus,avg_margin_pct,median_margin_pct,avg_lt_variability,stock_value
+Lead time <= 90 days,271,30.0,30.0,0.46,46748823.0
+Lead time > 90 days,32,30.0,30.0,0.45,7381646.0

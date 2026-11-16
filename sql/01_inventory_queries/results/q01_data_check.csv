@@ -1,0 +1,8 @@
+metric,value
+sales order lines,33919
+SKUs in inventory,303
+SKUs with at least 1 sale,290
+SKUs never sold,13
+first order date,2021-01-01
+last order date,2023-07-30
+total inventory value,"54,130,478"

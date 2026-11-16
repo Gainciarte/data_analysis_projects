@@ -1,0 +1,5 @@
+lead_time_bucket,skus,pct_skus,stock_value,avg_lt_variability
+1) <= 30 days,126,41.6,9357892.0,0.47
+2) 31-60 days,118,38.9,28508744.0,0.46
+3) 61-90 days,27,8.9,8882187.0,0.43
+4) > 90 days,32,10.6,7381646.0,0.45

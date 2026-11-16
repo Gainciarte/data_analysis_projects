@@ -1,0 +1,16 @@
+sku_id,sku_name,vendor_name,warehouse_id,on_hand_qty,daily_demand,days_of_cover,avg_lead_days,days_short,annual_consumption_value
+1244AA,Product 016,Apotex Corp,GUT930,2834.0,551.4,5.1,45,39.9,8429912.0
+1295CA,Product 022,Mylan Group,AXW291,5.0,0.1,40.8,120,79.2,5457148.0
+1281BA,Product 020,Heritage,NXH382,3.0,0.1,22.7,60,37.3,4693731.0
+2117BA,Product 132,Cixi Group,AXW291,372.0,4.9,76.2,120,43.8,3014932.0
+2473CA,Product 174,Apotex Corp,AXW291,73915.0,1462.8,50.5,60,9.5,2217735.0
+1967BA,Product 107,McKesson Corp,NXH382,4190.5,44.4,94.4,120,25.6,2020076.0
+3007CA,Product 238,Cixi Group,NXH382,5.0,0.3,14.7,30,15.3,1631669.0
+2331CA,Product 158,Macoven Group,FLR025,227.0,23.9,9.5,60,50.5,1278185.0
+1876AA,Product 094,"ALK-Abello, Corp",NXH382,5.0,0.2,23.3,30,6.7,1253164.0
+3178CA,Product 259,Sun Ltd,NXH382,4.0,0.2,22.7,30,7.3,1167171.0
+1224AA,Product 014,Apotex Corp,GUT930,194.0,6.3,30.6,90,59.4,1125734.0
+2528CA,Product 186,"ALK-Abello, Corp",GUT930,3996.0,200.0,20.0,30,10.0,1069921.0
+3016BA,Product 239,Lake Ltd,GUT930,6.0,0.2,35.0,60,25.0,872467.0
+2317CA,Product 156,Fullerton Corp,NXH382,3420.0,81.1,42.2,60,17.8,770132.0
+1367CA,Product 033,Lake Ltd,FLR025,5.0,0.1,41.8,90,48.2,670091.0

@@ -1,0 +1,2 @@
+distinct_vendor_names_raw,vendors_after_trim,rows_with_untrimmed_vendor,skus_max_lt_below_avg,skus
+16,16,26,0,303

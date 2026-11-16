@@ -1,0 +1,9 @@
+issue,rows_affected,example
+extra unnamed spill-over columns with data,4,
+"discount_percentage stored as a 0-1 fraction, not a percentage",1463,0
+reviewers packed in one cell (comma-separated user_id list),1123,
+rating is not a number (placeholder character),1,|
+"category path is CamelCase / glued with ""&"" (needs standardising)",1463,Car&Motorbike|CarAccessories|InteriorAccessories|AirPurifiers&Ionizers
+"rating_count with thousands separators (incl. Indian 4,26,973 style)",46,"1,03,052"
+mojibake (UTF-8 decoded as Windows-1252) in product_name,109,7SEVENÂ® Bluetooth Voice Command Remote 
+price stored as text with currency symbol / thousands separator,1463,"â‚¹1,043"

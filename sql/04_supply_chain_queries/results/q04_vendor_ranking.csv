@@ -1,0 +1,17 @@
+vendor_name,skus,avg_lead_days,lt_variability,pct_skus_late_to_order,rank_lead_time,rank_variability,rank_late_orders,avg_rank,performance_quartile
+Major Corp,11,38.6,0.47,0.0,2,9,1,4.0,1
+Accord Ltd,11,45.0,0.47,0.0,4,11,1,5.3,1
+AstraZeneca,2,30.0,0.49,0.0,1,15,1,5.7,1
+Sun Ltd,16,48.8,0.46,12.5,5,7,6,6.0,1
+Kinray Ltd,14,43.9,0.47,14.3,3,10,7,6.7,2
+Allermed Group,24,60.6,0.44,8.7,15,5,4,8.0,2
+Lake Ltd,44,51.7,0.44,21.4,8,4,12,8.0,2
+Cixi Group,27,52.0,0.46,14.8,9,8,9,8.7,2
+Macoven Group,22,51.4,0.48,14.3,7,12,7,8.7,3
+Mylan Group,12,58.8,0.44,18.2,13,3,11,9.0,3
+Apotex Corp,25,56.8,0.43,26.1,12,1,15,9.3,3
+McKesson Corp,18,50.0,0.48,16.7,6,13,10,9.7,3
+Heritage,24,60.6,0.43,22.7,15,2,13,10.0,4
+SUPERVALU Group,10,53.5,0.51,10.0,11,16,5,10.7,4
+Fullerton Corp,15,60.0,0.45,38.5,14,6,16,12.0,4
+"ALK-Abello, Corp",28,53.0,0.48,23.1,10,14,14,12.7,4

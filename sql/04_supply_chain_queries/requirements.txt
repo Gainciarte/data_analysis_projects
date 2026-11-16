@@ -1,0 +1,5 @@
+pgserver
+pandas
+openpyxl
+matplotlib
+psycopg2-binary

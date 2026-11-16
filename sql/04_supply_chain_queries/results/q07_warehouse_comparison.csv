@@ -1,0 +1,5 @@
+warehouse_id,city,province,skus,stock_value,avg_lead_days,lt_variability,skus_late,orders,revenue,stock_as_pct_of_revenue
+AXW291,Stanstead,Quebec,69,15498258.0,52.2,0.46,8,15938,237912192.0,6.5
+GUT930,Martensville,Saskatchewan,101,16858264.0,54.7,0.47,13,7861,114496446.0,14.7
+NXH382,Saint-Pamphile,Quebec,81,10773609.0,51.9,0.44,19,6657,104433140.0,10.3
+FLR025,Estevan,Saskatchewan,52,11000339.0,52.3,0.45,10,3463,56964841.0,19.3

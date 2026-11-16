@@ -1,0 +1,4 @@
+customer_type,orders,revenue,pct_revenue,avg_order_value,revenue_per_unit
+Wholesale,18193,278536195,54.2,15310.0,35.2
+Distributor,10651,157335042,30.6,14772.0,33.47
+Export,5075,77935382,15.2,15357.0,37.71

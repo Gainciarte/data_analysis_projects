@@ -1,0 +1,5 @@
+warehouse_id,city,province,orders,revenue,pct_revenue,avg_order_value
+AXW291,Stanstead,Quebec,15938,237912192,46.3,14927.0
+GUT930,Martensville,Saskatchewan,7861,114496446,22.3,14565.0
+NXH382,Saint-Pamphile,Quebec,6657,104433140,20.3,15688.0
+FLR025,Estevan,Saskatchewan,3463,56964841,11.1,16450.0

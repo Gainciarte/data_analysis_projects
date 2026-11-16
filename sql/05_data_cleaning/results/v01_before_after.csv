@@ -1,0 +1,6 @@
+step_no,step,row_count,change_vs_previous
+1,0. raw rows loaded,1464,
+2,1. after typing & standardising,1464,0.0
+3,2. after removing empty rows,1463,-1.0
+4,3. after deduplicating = clean_products,1350,-113.0
+5,4. product_reviewers (1 row per review),8119,6769.0

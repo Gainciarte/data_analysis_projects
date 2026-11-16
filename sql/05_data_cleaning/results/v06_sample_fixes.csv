@@ -1,0 +1,7 @@
+raw_row_id,raw_price,clean_price,raw_rating_count,clean_rating_count,raw_discount,clean_discount_pct,raw_category,clean_category
+9,â‚¹499,499.0,"1,79,691",179691,0.5,50.0,Computers&Accessories|NetworkingDevices|NetworkAdapters|WirelessUSBAdapters,Computers & Accessories > Networking Devices
+13,â‚¹219,219.0,"4,26,973",426973,0.69,69.0,"Electronics|HomeTheater,TV&Video|Accessories|Cables|HDMICables","Electronics > Home Theater, TV & Video"
+41,â‚¹209,209.0,"1,07,687",107687,0.7,70.0,Computers&Accessories|Accessories&Peripherals|Cables&Accessories|Cables|USBCables,Computers & Accessories > Accessories & Peripherals
+48,â‚¹309,309.0,"4,26,973",426973,0.35,35.0,"Electronics|HomeTheater,TV&Video|Accessories|Cables|HDMICables","Electronics > Home Theater, TV & Video"
+57,â‚¹649,649.0,"1,79,691",179691,0.54,54.0,Computers&Accessories|NetworkingDevices|NetworkAdapters|WirelessUSBAdapters,Computers & Accessories > Networking Devices
+66,â‚¹309,309.0,"4,26,973",426973,0.78,78.0,"Electronics|HomeTheater,TV&Video|Accessories|Cables|HDMICables","Electronics > Home Theater, TV & Video"
