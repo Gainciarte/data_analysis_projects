@@ -1,6 +1,8 @@
 # 📊 Data Analysis Projects
 
-A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence.
+A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
+
+**Status:** 20 of 30 planned projects completed (Excel, Python, SQL and Machine Learning). Tableau and Power BI projects are in progress and listed in the [Roadmap](#️-roadmap).
 
 ---
 
@@ -9,22 +11,15 @@ A portfolio of data analysis projects across multiple tools and technologies, co
 ```
 data_analysis_projects/
 │
-├── excel/
-│   ├── 01_inventory_control/
-│   ├── 02_kpi_dashboard/
-│   ├── 03_inventory_parameters/
-│   ├── 04_supplier_evaluation/
-│   └── 05_budget_tracking/
-│
-└── python/
-    ├── 01_sales_eda/
-    ├── 02_inventory_optimization/
-    ├── 03_web_scraping/
-    ├── 04_etl_pipeline/
-    └── 05_predictive_maintenance/
+├── excel/    01_inventory_control · 02_kpi_dashboard · 03_inventory_parameters
+│             04_supplier_evaluation · 05_budget_tracking
+├── python/   01_sales_eda · 02_inventory_optimization · 03_web_scraping
+│             04_etl_pipeline · 05_predictive_maintenance
+├── sql/      01_inventory_queries · 02_sales_reporting · 03_customer_analysis
+│             04_supply_chain_queries · 05_data_cleaning
+└── ml/       01_demand_forecasting · 02_anomaly_detection · 03_classification_model
+              04_customer_clustering · 05_regression_analysis
 ```
-
-See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL, Machine Learning).
 
 ---
 
@@ -34,7 +29,8 @@ See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL,
 |---|---|
 | Spreadsheets | Microsoft Excel (Advanced), Power Query |
 | Programming | Python (pandas, numpy, scipy, matplotlib, seaborn, requests, BeautifulSoup, sqlalchemy) |
-| Databases | SQLite |
+| Databases | PostgreSQL 16 (SQL projects), SQLite |
+| Machine Learning | scikit-learn, statsmodels |
 | Version Control | Git, GitHub |
 
 ---
@@ -65,40 +61,80 @@ See [Roadmap](#️-roadmap) below for planned additions (Tableau, Power BI, SQL,
 
 ---
 
+---
+
+### 🗄️ SQL (PostgreSQL)
+
+Each project has numbered `.sql` scripts that run top to bottom, a small Python loader that reproduces the results, the real query outputs in `results/` and charts in `images/`.
+
+| # | Project | Description | Key Skills |
+|---|---|---|---|
+| 01 | Inventory Queries | Stock status, reorder risk, ABC/XYZ, dead stock and overstock for 303 SKUs, with reusable views | CTEs, window functions, `FILTER`, views |
+| 02 | Sales Reporting | 33,919 orders as a small star schema: monthly KPIs, MoM/YoY, running totals, moving averages and top-N rankings | `LAG`, `RANK`, running `SUM`, materialized view |
+| 03 | Customer Analysis | RFM scoring, repeat purchase, customer lifetime value and monthly cohort retention on 1M+ real transaction lines | `NTILE`, cohorts, indexes, constraints |
+| 04 | Supply Chain Queries | Vendor lead times, replenishment timing, revenue at risk and warehouse comparison | `ROLLUP`, `PERCENTILE_CONT`, `NTILE` |
+| 05 | Data Cleaning | Raw Amazon India product export cleaned in SQL only: profiling, deduplication, quarantine table, validation checks | Text cleaning, `UNNEST`, validation queries |
+
+---
+
+### 🤖 Machine Learning
+
+Each project is an executed Jupyter notebook with its README, saved results and charts. Validation is explicit (time-based splits, stratified or grouped CV, baselines, leakage audit) and limitations are documented.
+
+| # | Project | Description | Key Libraries |
+|---|---|---|---|
+| 01 | Demand Forecasting | Monthly demand of the top SKUs: naive, moving average, Holt-Winters/ETS and SARIMA with rolling-origin evaluation, and the effect of forecast error on safety stock | statsmodels, pandas |
+| 02 | Anomaly Detection | Isolation Forest, LOF and robust z-scores on industrial sensor data and on order quantities with injected spikes | scikit-learn |
+| 03 | Classification Model | Late-delivery prediction on public USAID health-commodity shipments (logistic regression, random forest, gradient boosting) with a chronological test | scikit-learn |
+| 04 | Customer Clustering | RFM + KMeans/hierarchical clustering of UCI Online Retail II customers, with segment profiles and a forward-looking validation | scikit-learn, scipy |
+| 05 | Regression Analysis | Freight-cost regression (OLS with robust errors vs regularized and tree models) with grouped cross-validation | statsmodels, scikit-learn |
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Python 3.9+
+- Python 3.9+ (3.12 recommended for the SQL projects)
 - pip or conda
 
-### Python setup
+### Python / ML setup
 
 ```bash
 git clone https://github.com/Gainciarte/data_analysis_projects.git
 cd data_analysis_projects
-pip install -r requirements.txt
+pip install -r requirements.txt        # everything, or use the requirements.txt inside each project folder
 ```
+
+### SQL projects
+
+They use an **embedded PostgreSQL 16** through the `pgserver` package, so no database installation is needed. From each project folder:
+
+```bash
+pip install -r requirements.txt
+python run_<name>.py
+```
+
+`pgserver` publishes wheels for Python 3.9-3.12 only.
 
 ---
 
 ## 📌 Notes
 
 - Each project folder contains its own `README.md` with objective, data source, methodology and results.
-- Raw data files are **not included** in this repository due to file size. Each project README links to the original data source.
+- Small datasets are included in the repository; large ones are **not**, and each project README links to the original source (some loaders download the file on first run).
 - Datasets used are either publicly available or anonymized synthetic data.
 - Excel 01: Stock Status analysis was excluded as the dataset contains sales data only, not inventory levels. This limitation is documented in the project README.
+- The Kaizen Analytics inventory dataset looks synthetic (for example, unit price is cost / 0.7 for every SKU), so margin-based conclusions on it are not meaningful. This is flagged in the projects that use it.
 
 ---
 
 ## 🗺️ Roadmap
 
-Planned expansions — not started yet, listed here separately so the structure above only reflects what's actually built:
+Planned expansions, listed separately so the structure above only reflects what is actually built:
 
 - **Tableau**: Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview.
 - **Power BI**: Warehouse KPIs, Procurement Analysis, Project Tracking, HR Headcount, Operational Costs.
-- **SQL** (MySQL/PostgreSQL): Inventory Queries, Sales Reporting, Customer Analysis, Supply Chain Queries, Data Cleaning.
-- **Machine Learning** (scikit-learn, statsmodels): Demand Forecasting, Anomaly Detection, Classification Model, Customer Clustering, Regression Analysis.
 
 ---
 
@@ -116,6 +152,11 @@ Planned expansions — not started yet, listed here separately so the structure 
 | Python 03 - Web Scraping | Books to Scrape (practice website) | [http://books.toscrape.com/](http://books.toscrape.com/) |
 | Python 04 - ETL Pipeline | Brazilian E-Commerce Public Dataset by Olist | [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
 | Python 05 - Predictive Maintenance | AI4I 2020 Predictive Maintenance Dataset | [Kaggle](https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020) |
+| SQL 01, 02, 04 / ML 01, 02 | Kaizen Analytics inventory and sales workbook (in `python/02_inventory_optimization/`) | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
+| SQL 03 / ML 04 | Online Retail II | [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/502/online+retail+ii) |
+| SQL 05 | Amazon India product data (raw sheet) | [Kaggle](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset) |
+| ML 02 | AI4I 2020 Predictive Maintenance Dataset | [Kaggle](https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020) |
+| ML 03, 05 | Supply Chain Shipment Pricing Data (USAID / PEPFAR SCMS) | [USAID Data](https://data.usaid.gov/HIV-AIDS/Supply-Chain-Shipment-Pricing-Data/a3rc-nmf6) |
 
 ---
 
@@ -127,4 +168,4 @@ Mechanical Engineer | Data & Logistics Analyst
 
 ---
 
-*This portfolio is part of an ongoing professional development initiative focused on data analysis applied to logistics, supply chain and operations.*
+*This portfolio is part of an ongoing professional development initiative focused on data analysis applied to logistics, supply chain and operations. Licensed under Apache 2.0 (see [LICENSE](LICENSE)).*

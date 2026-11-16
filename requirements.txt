@@ -1,0 +1,17 @@
+pandas
+numpy
+scipy
+scikit-learn
+statsmodels
+matplotlib
+seaborn
+openpyxl
+python-calamine
+requests
+beautifulsoup4
+sqlalchemy
+psycopg2-binary
+pgserver
+joblib
+jupyter
+nbconvert
