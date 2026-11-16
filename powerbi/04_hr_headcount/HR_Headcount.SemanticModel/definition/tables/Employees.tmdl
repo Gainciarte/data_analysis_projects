@@ -1,0 +1,197 @@
+table Employees
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+	column Age
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Age
+
+	column AgeBand
+		dataType: string
+		summarizeBy: none
+		sortByColumn: AgeOrder
+		sourceColumn: AgeBand
+
+	column AgeOrder
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: AgeOrder
+
+	column Gender
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Gender
+
+	column MaritalStatus
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+	column Department
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Department
+
+	column JobRole
+		dataType: string
+		summarizeBy: none
+		sourceColumn: JobRole
+
+	column JobLevel
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: JobLevel
+
+	column Education
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Education
+
+	column EducationField
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EducationField
+
+	column BusinessTravel
+		dataType: string
+		summarizeBy: none
+		sourceColumn: BusinessTravel
+
+	column OverTime
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OverTime
+
+	column DistanceFromHome
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: DistanceFromHome
+
+	column MonthlyIncome
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: MonthlyIncome
+
+	column TotalWorkingYears
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: TotalWorkingYears
+
+	column YearsAtCompany
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: YearsAtCompany
+
+	column TenureOrder
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: TenureOrder
+
+	column TenureBand
+		dataType: string
+		summarizeBy: none
+		sortByColumn: TenureOrder
+		sourceColumn: TenureBand
+
+	column YearsSinceLastPromotion
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: YearsSinceLastPromotion
+
+	column JobSatisfaction
+		dataType: string
+		summarizeBy: none
+		sourceColumn: JobSatisfaction
+
+	column WorkLifeBalance
+		dataType: string
+		summarizeBy: none
+		sourceColumn: WorkLifeBalance
+
+	column PerformanceRating
+		dataType: string
+		summarizeBy: none
+		sourceColumn: PerformanceRating
+
+	column Attrition
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Attrition
+
+	column LeftFlag
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: LeftFlag
+
+	measure Headcount = COUNTROWS(Employees)
+		formatString: #,0
+		displayFolder: Workforce
+
+	measure 'Active Employees' = CALCULATE(COUNTROWS(Employees), Employees[Attrition] = "No")
+		formatString: #,0
+		displayFolder: Workforce
+
+	measure Leavers = SUM(Employees[LeftFlag])
+		formatString: #,0
+		displayFolder: Attrition
+
+	measure 'Attrition Rate' = DIVIDE([Leavers], [Headcount])
+		formatString: 0.0%
+		displayFolder: Attrition
+
+	measure 'Avg Monthly Income' = AVERAGE(Employees[MonthlyIncome])
+		formatString: $#,0
+		displayFolder: Workforce
+
+	measure 'Avg Tenure (years)' = AVERAGE(Employees[YearsAtCompany])
+		formatString: 0.0
+		displayFolder: Workforce
+
+	measure 'Avg Age' = AVERAGE(Employees[Age])
+		formatString: 0.0
+		displayFolder: Workforce
+
+	measure 'Overtime Share' = DIVIDE(CALCULATE(COUNTROWS(Employees), Employees[OverTime] = "Yes"), [Headcount])
+		formatString: 0.0%
+		displayFolder: Workforce
+
+	measure 'Female Share' = DIVIDE(CALCULATE(COUNTROWS(Employees), Employees[Gender] = "Female"), [Headcount])
+		formatString: 0.0%
+		displayFolder: Workforce
+
+	measure 'Avg Years Since Promotion' = AVERAGE(Employees[YearsSinceLastPromotion])
+		formatString: 0.0
+		displayFolder: Workforce
+
+	measure 'Attrition Rate Overall' = CALCULATE([Attrition Rate], ALL(Employees))
+		formatString: 0.0%
+		displayFolder: Attrition
+
+	measure 'Attrition vs Overall (pts)' = ([Attrition Rate] - [Attrition Rate Overall]) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Attrition
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\\hr_employees.csv"), [Delimiter=",", Columns=25, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"EmployeeID", Int64.Type}, {"Age", Int64.Type}, {"AgeBand", type text}, {"AgeOrder", Int64.Type}, {"Gender", type text}, {"MaritalStatus", type text}, {"Department", type text}, {"JobRole", type text}, {"JobLevel", Int64.Type}, {"Education", type text}, {"EducationField", type text}, {"BusinessTravel", type text}, {"OverTime", type text}, {"DistanceFromHome", Int64.Type}, {"MonthlyIncome", type number}, {"TotalWorkingYears", Int64.Type}, {"YearsAtCompany", Int64.Type}, {"TenureOrder", Int64.Type}, {"TenureBand", type text}, {"YearsSinceLastPromotion", Int64.Type}, {"JobSatisfaction", type text}, {"WorkLifeBalance", type text}, {"PerformanceRating", type text}, {"Attrition", type text}, {"LeftFlag", Int64.Type}}, "en-US")
+				in
+					Typed

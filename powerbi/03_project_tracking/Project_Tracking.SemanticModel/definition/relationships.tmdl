@@ -1,0 +1,4 @@
+relationship 8fef9048-f180-48c7-829a-977caec0d951
+	fromColumn: Deliveries.DeliveredDate
+	toColumn: Calendar.Date
+

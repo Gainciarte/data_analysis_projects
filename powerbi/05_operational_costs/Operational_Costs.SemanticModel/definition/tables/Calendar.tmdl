@@ -1,0 +1,25 @@
+table Calendar
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	column Year
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: [Year]
+
+	column MonthStart
+		dataType: dateTime
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: [MonthStart]
+
+	partition Calendar = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(CALENDAR(DATE(2006, 1, 1), DATE(2015, 12, 31)), "Year", YEAR([Date]), "MonthStart", DATE(YEAR([Date]), MONTH([Date]), 1))

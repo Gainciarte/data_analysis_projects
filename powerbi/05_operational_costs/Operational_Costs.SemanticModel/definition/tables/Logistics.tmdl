@@ -1,0 +1,203 @@
+table Logistics
+
+	column LineID
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: LineID
+
+	column ProjectCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ProjectCode
+
+	column Country
+		dataType: string
+		summarizeBy: none
+		dataCategory: Country
+		sourceColumn: Country
+
+	column ManagedBy
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ManagedBy
+
+	column FulfillVia
+		dataType: string
+		summarizeBy: none
+		sourceColumn: FulfillVia
+
+	column IncoTerm
+		dataType: string
+		summarizeBy: none
+		sourceColumn: IncoTerm
+
+	column ShipmentMode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ShipmentMode
+
+	column ProductGroup
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ProductGroup
+
+	column SubClassification
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SubClassification
+
+	column Vendor
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Vendor
+
+	column Sourcing
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Sourcing
+
+	column ManufacturingSite
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ManufacturingSite
+
+	column ScheduledDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: ScheduledDate
+
+	column DeliveredDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: DeliveredDate
+
+	column Quantity
+		dataType: double
+		formatString: #,0
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+	column LineValue
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: LineValue
+
+	column UnitPrice
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+	column WeightKg
+		dataType: double
+		formatString: #,0
+		summarizeBy: sum
+		sourceColumn: WeightKg
+
+	column FreightUSD
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: FreightUSD
+
+	column InsuranceUSD
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: InsuranceUSD
+
+	column FreightType
+		dataType: string
+		summarizeBy: none
+		sourceColumn: FreightType
+
+	column DaysLate
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: DaysLate
+
+	column OnTime
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OnTime
+
+	column WeightBand = SWITCH(TRUE(), ISBLANK(Logistics[WeightKg]), "Unknown", Logistics[WeightKg] < 100, "< 100 kg", Logistics[WeightKg] < 1000, "100-999 kg", Logistics[WeightKg] < 10000, "1-10 t", "> 10 t")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: WeightOrder
+
+	column WeightOrder = SWITCH(TRUE(), ISBLANK(Logistics[WeightKg]), 0, Logistics[WeightKg] < 100, 1, Logistics[WeightKg] < 1000, 2, Logistics[WeightKg] < 10000, 3, 4)
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+
+	measure 'Freight Cost' = SUM(Logistics[FreightUSD])
+		formatString: $#,0.0
+		displayFolder: Cost
+
+	measure 'Insurance Cost' = SUM(Logistics[InsuranceUSD])
+		formatString: $#,0.0
+		displayFolder: Cost
+
+	measure 'Logistics Cost (freight + insurance)' = [Freight Cost] + [Insurance Cost]
+		formatString: $#,0.0
+		displayFolder: Cost
+
+	measure 'Priced Lines' = CALCULATE(COUNTROWS(Logistics), Logistics[FreightType] = "Numeric")
+		formatString: #,0
+		displayFolder: Cost
+
+	measure 'Priced Value' = CALCULATE(SUM(Logistics[LineValue]), Logistics[FreightType] = "Numeric")
+		formatString: $#,0.0
+		displayFolder: Cost
+
+	measure 'Freight % of Value' = DIVIDE([Freight Cost], [Priced Value])
+		formatString: 0.0%
+		displayFolder: Cost
+
+	measure 'Freight per kg' = DIVIDE(CALCULATE(SUM(Logistics[FreightUSD]), Logistics[FreightType] = "Numeric", NOT ISBLANK(Logistics[WeightKg])), CALCULATE(SUM(Logistics[WeightKg]), Logistics[FreightType] = "Numeric"))
+		formatString: $#,0.00
+		displayFolder: Cost
+
+	measure 'Freight per Priced Line' = DIVIDE([Freight Cost], [Priced Lines])
+		formatString: $#,0
+		displayFolder: Cost
+
+	measure 'Cost Coverage' = DIVIDE([Priced Lines], COUNTROWS(Logistics))
+		formatString: 0.0%
+		displayFolder: Data quality
+
+	measure 'Freight YoY %' =
+			VAR prev = CALCULATE([Freight Cost], SAMEPERIODLASTYEAR('Calendar'[Date]))
+			RETURN IF(HASONEVALUE('Calendar'[Year]), DIVIDE([Freight Cost] - prev, prev))
+		formatString: 0.0%;-0.0%
+		displayFolder: Cost
+
+	measure 'Air Share of Freight' = DIVIDE(CALCULATE([Freight Cost], Logistics[ShipmentMode] = "Air"), [Freight Cost])
+		formatString: 0.0%
+		displayFolder: Cost
+
+	measure 'Top 10 Country Freight' =
+			VAR r = RANKX(ALL(Logistics[Country]), [Freight Cost], , DESC, Dense)
+			RETURN IF(r <= 10, [Freight Cost])
+		formatString: $#,0.0
+		displayFolder: Cost
+
+	measure 'Air Premium vs Truck (per kg)' = DIVIDE(CALCULATE([Freight per kg], Logistics[ShipmentMode] = "Air"), CALCULATE([Freight per kg], Logistics[ShipmentMode] = "Truck"))
+		formatString: 0.0\x
+		displayFolder: Cost
+
+	partition Logistics = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\\scms_lines.csv"), [Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"LineID", Int64.Type}, {"ProjectCode", type text}, {"Country", type text}, {"ManagedBy", type text}, {"FulfillVia", type text}, {"IncoTerm", type text}, {"ShipmentMode", type text}, {"ProductGroup", type text}, {"SubClassification", type text}, {"Vendor", type text}, {"Sourcing", type text}, {"ManufacturingSite", type text}, {"ScheduledDate", type date}, {"DeliveredDate", type date}, {"Quantity", type number}, {"LineValue", type number}, {"UnitPrice", type number}, {"WeightKg", type number}, {"FreightUSD", type number}, {"InsuranceUSD", type number}, {"FreightType", type text}, {"DaysLate", Int64.Type}, {"OnTime", type text}}, "en-US")
+				in
+					Typed

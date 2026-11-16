@@ -1,0 +1,137 @@
+table Inventory
+
+	column SKU
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SKU
+
+	column SKUName
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SKUName
+
+	column Vendor
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Vendor
+
+	column WarehouseCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: WarehouseCode
+
+	column OnHandQty
+		dataType: double
+		formatString: #,0
+		summarizeBy: sum
+		sourceColumn: OnHandQty
+
+	column CostPerUnit
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: sum
+		sourceColumn: CostPerUnit
+
+	column StockValue
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: StockValue
+
+	column Unit
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unit
+
+	column AvgLeadTimeDays
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: AvgLeadTimeDays
+
+	column MaxLeadTimeDays
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: MaxLeadTimeDays
+
+	column UnitPrice
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+	column DailyDemand = DIVIDE(CALCULATE(SUM(Sales[OrderQty]), FILTER(ALL(Sales), Sales[SKU] = Inventory[SKU])), CALCULATE(DATEDIFF(MIN(Sales[OrderDate]), MAX(Sales[OrderDate]), DAY) + 1, ALL(Sales)))
+		dataType: double
+		formatString: #,0.0
+		summarizeBy: none
+
+	column CoverDays = IF(Inventory[DailyDemand] > 0, DIVIDE(Inventory[OnHandQty], Inventory[DailyDemand]))
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+
+	column CoverSort = IF(ISBLANK(Inventory[CoverDays]), 1000000, Inventory[CoverDays])
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+
+	column CoverBucketOrder = SWITCH(TRUE(), ISBLANK(Inventory[CoverDays]), 5, Inventory[CoverDays] < Inventory[AvgLeadTimeDays], 1, Inventory[CoverDays] <= 90, 2, Inventory[CoverDays] <= 365, 3, 4)
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+
+	column CoverBucket = SWITCH(TRUE(), ISBLANK(Inventory[CoverDays]), "No sales", Inventory[CoverDays] < Inventory[AvgLeadTimeDays], "Below lead time", Inventory[CoverDays] <= 90, "Healthy (to 90 d)", Inventory[CoverDays] <= 365, "High (90-365 d)", "Overstock (>365 d)")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: CoverBucketOrder
+
+	measure 'Stock Value' = SUM(Inventory[StockValue])
+		formatString: $#,0.0
+		displayFolder: Inventory
+
+	measure SKUs = DISTINCTCOUNT(Inventory[SKU])
+		formatString: #,0
+		displayFolder: Inventory
+
+	measure 'Avg Lead Time (days)' = AVERAGE(Inventory[AvgLeadTimeDays])
+		formatString: 0.0
+		displayFolder: Inventory
+
+	measure 'SKUs Below Lead Time' = CALCULATE(COUNTROWS(Inventory), Inventory[CoverBucket] = "Below lead time")
+		formatString: #,0
+		displayFolder: Inventory risk
+
+	measure 'Overstock SKUs' = CALCULATE(COUNTROWS(Inventory), Inventory[CoverBucket] = "Overstock (>365 d)")
+		formatString: #,0
+		displayFolder: Inventory risk
+
+	measure 'Overstock Value Share' = DIVIDE(CALCULATE([Stock Value], Inventory[CoverBucket] = "Overstock (>365 d)"), [Stock Value])
+		formatString: 0.0%
+		displayFolder: Inventory risk
+
+	measure 'Below Lead Time Value Share' = DIVIDE(CALCULATE([Stock Value], Inventory[CoverBucket] = "Below lead time"), [Stock Value])
+		formatString: 0.0%
+		displayFolder: Inventory risk
+
+	measure 'Inventory Turnover (annualised)' = DIVIDE([COGS] * 365 / [Period Days], [Stock Value])
+		formatString: 0.00
+		displayFolder: Inventory
+
+	measure 'Portfolio Days of Cover' = DIVIDE([Units On Hand], DIVIDE([Units Sold], [Period Days]))
+		formatString: #,0
+		displayFolder: Inventory
+
+	measure 'Units On Hand' = SUM(Inventory[OnHandQty])
+		formatString: #,0.0
+		displayFolder: Inventory
+
+	partition Inventory = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\\kaizen_inventory.csv"), [Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"SKU", type text}, {"SKUName", type text}, {"Vendor", type text}, {"WarehouseCode", type text}, {"OnHandQty", type number}, {"CostPerUnit", type number}, {"StockValue", type number}, {"Unit", type text}, {"AvgLeadTimeDays", Int64.Type}, {"MaxLeadTimeDays", Int64.Type}, {"UnitPrice", type number}}, "en-US")
+				in
+					Typed

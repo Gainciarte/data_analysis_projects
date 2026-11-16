@@ -1,0 +1,15 @@
+P02 spend 1627.6 M | direct 542.2 | vendors 72 | top3 share 57.4 | RDC share 66.7
+P02 freight M 68.8 | freight % of priced value 5.8 | late % 11.5 | avg days late 21.4
+P02 late by route {'Direct Drop': 5.3, 'From RDC': 17.2}
+P03 projects 142 | >30d late lines 230 | late lines 1186 | value late M 259.0 | projects with late line 65 | avg variance days -6.02
+P03 status {'Early': 2814, 'On schedule': 6324, 'Late 1-7': 420, 'Late 8-30': 536, 'Late >30': 230} | no date 0
+P03 worst projects {'104-CI-T30': 127, '111-MZ-T30': 114, '110-ZM-T30': 102}
+P05 coverage 60.0 | freight/kg 3.24 | insurance M 2.41 | freight per priced line 11103
+P05 per kg by mode {'Air': 5.26, 'Air Charter': 2.73, 'Not recorded': 3.61, 'Ocean': 1.85, 'Truck': 1.59} | air/truck 3.31
+P05 freight by mode M {'Air': 43.0, 'Air Charter': 8.9, 'Not recorded': 1.4, 'Ocean': 3.6, 'Truck': 11.9}
+P04 headcount 1470 | attrition 16.1 | leavers 237 | avg age 36.9 | avg tenure 7.0 | avg income 6503 | female 40.0 | OT share 28.3
+P04 attrition by OT {'No': 10.4, 'Yes': 30.5} | by tenure {'0-1 yrs': 34.9, '10+ yrs': 8.1, '2-3 yrs': 18.4, '4-5 yrs': 13.1, '6-10 yrs': 12.3}
+P01 stock M 54.13 | SKUs 303 | below LT 65 | overstock 69 | overstock value share 44.4 | turnover 2.58 | days cover 128
+P01 buckets {'High': 117, 'Overstock': 69, 'Below lead time': 65, 'Healthy': 39, 'No sales': 13} | revenue M 513.8 | orders 33919
+P05 air share of freight 62.5
+P01 wholesale revenue share 54.2

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "2d5fc2685b654b39bf1d",
+  "position": {
+    "x": 460,
+    "y": 490,
+    "z": 13000,
+    "height": 215,
+    "width": 400,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "WeightBand"
+                }
+              },
+              "queryRef": "Logistics.WeightBand",
+              "nativeQueryRef": "WeightBand"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Freight per kg"
+                }
+              },
+              "queryRef": "Logistics.Freight per kg",
+              "nativeQueryRef": "Freight per kg"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Freight per kg by weight band'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

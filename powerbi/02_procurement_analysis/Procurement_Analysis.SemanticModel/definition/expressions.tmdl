@@ -1,0 +1,2 @@
+expression DataFolder = "C:\Claude\Portafolio\repo\powerbi\02_procurement_analysis\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 0869f965-c2bb-49b3-b70c-93e5a3d07608

@@ -1,0 +1,12 @@
+relationship c4b63e4e-4ca9-4fb8-b316-fab10520010e
+	fromColumn: Inventory.WarehouseCode
+	toColumn: Warehouses.WarehouseCode
+
+relationship 9c30769d-6ce1-45f0-b0f2-ad8829a9223e
+	fromColumn: Sales.WarehouseCode
+	toColumn: Warehouses.WarehouseCode
+
+relationship 89d7ed70-33ee-462f-9032-e36d842b06d7
+	fromColumn: Sales.OrderDate
+	toColumn: Calendar.Date
+

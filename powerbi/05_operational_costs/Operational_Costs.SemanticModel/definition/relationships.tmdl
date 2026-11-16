@@ -1,0 +1,4 @@
+relationship c3838255-d2c9-43c4-9a26-ec13dc471e3d
+	fromColumn: Logistics.DeliveredDate
+	toColumn: Calendar.Date
+

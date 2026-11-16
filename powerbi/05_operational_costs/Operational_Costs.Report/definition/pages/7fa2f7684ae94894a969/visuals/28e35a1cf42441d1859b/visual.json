@@ -1,0 +1,134 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "28e35a1cf42441d1859b",
+  "position": {
+    "x": 20,
+    "y": 490,
+    "z": 10000,
+    "height": 215,
+    "width": 1240,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "Logistics.Country",
+              "nativeQueryRef": "Country"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Freight Cost"
+                }
+              },
+              "queryRef": "Logistics.Freight Cost",
+              "nativeQueryRef": "Freight Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Freight per kg"
+                }
+              },
+              "queryRef": "Logistics.Freight per kg",
+              "nativeQueryRef": "Freight per kg"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Freight % of Value"
+                }
+              },
+              "queryRef": "Logistics.Freight % of Value",
+              "nativeQueryRef": "Freight % of Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Priced Lines"
+                }
+              },
+              "queryRef": "Logistics.Priced Lines",
+              "nativeQueryRef": "Priced Lines"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Logistics"
+                  }
+                },
+                "Property": "Freight Cost"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Countries: freight cost, cost per kg and share of goods value'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

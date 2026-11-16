@@ -1,0 +1,2 @@
+expression DataFolder = "C:\Claude\Portafolio\repo\powerbi\04_hr_headcount\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ac4c0f9b-3dd4-4d95-96d2-e7f15b18fe48

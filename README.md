@@ -2,7 +2,7 @@
 
 A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
 
-**Status:** 20 of 30 planned projects completed (Excel, Python, SQL and Machine Learning). The 10 Tableau and Power BI dashboards are in progress (see [Dashboards](#-tableau--power-bi-in-progress)); they will be added to the project tables as each one is finished and published.
+**Status:** 25 of 30 planned projects completed (Excel, Python, SQL, Machine Learning and Power BI). The 5 Tableau dashboards are in progress (see [Tableau](#-tableau-in-progress)); they will be added to the project tables as each one is finished and published.
 
 ---
 
@@ -17,8 +17,10 @@ data_analysis_projects/
 │             04_etl_pipeline · 05_predictive_maintenance
 ├── sql/      01_inventory_queries · 02_sales_reporting · 03_customer_analysis
 │             04_supply_chain_queries · 05_data_cleaning
-└── ml/       01_demand_forecasting · 02_anomaly_detection · 03_classification_model
-              04_customer_clustering · 05_regression_analysis
+├── ml/       01_demand_forecasting · 02_anomaly_detection · 03_classification_model
+│             04_customer_clustering · 05_regression_analysis
+└── powerbi/  01_warehouse_kpis · 02_procurement_analysis · 03_project_tracking
+              04_hr_headcount · 05_operational_costs
 ```
 
 ---
@@ -30,7 +32,7 @@ data_analysis_projects/
 | Spreadsheets | Microsoft Excel (Advanced), Power Query |
 | Programming | Python (pandas, numpy, scipy, matplotlib, seaborn, requests, BeautifulSoup, sqlalchemy) |
 | Databases | PostgreSQL 16 (SQL projects), SQLite |
-| BI (in progress) | Tableau Public, Power BI Desktop |
+| BI | Power BI Desktop (DAX, Power Query, PBIP projects); Tableau Public (in progress) |
 | Machine Learning | scikit-learn, statsmodels |
 | Version Control | Git, GitHub |
 
@@ -92,14 +94,27 @@ Each project is an executed Jupyter notebook with its README, saved results and 
 
 ---
 
-### 📈 Tableau & Power BI (in progress)
+### 📊 Power BI
+
+Five dashboards saved as **Power BI Projects (`.pbip`)**: the semantic model (tables, relationships, DAX measures) is TMDL text and the report is PBIR JSON, so changes are reviewable in Git. Each project folder has a README with the data model, key DAX measures, screenshots exported from Power BI Desktop, findings and limitations. Every headline number was recomputed independently with pandas ([`powerbi/verify_numbers.py`](powerbi/verify_numbers.py)).
+
+| # | Project | Description | Key Skills |
+|---|---|---|---|
+| 01 | [Warehouse KPIs](powerbi/01_warehouse_kpis) | Stock value, days of cover against lead time, overstock, turnover and sales by warehouse (synthetic Kaizen data, flagged as such) | DAX, calculated columns, `SWITCH(TRUE())`, `RANKX` |
+| 02 | [Procurement Analysis](powerbi/02_procurement_analysis) | Spend, vendor concentration, sourcing route, freight and delivery performance on USAID shipments | Star model, `TOPN`, time intelligence, `DIVIDE` |
+| 03 | [Project Tracking](powerbi/03_project_tracking) | On-time performance and schedule variance across 142 project codes | Calculated buckets, `sortByColumn`, `CALCULATE` |
+| 04 | [HR Headcount](powerbi/04_hr_headcount) | Workforce profile and attrition drivers (fictional IBM HR sample, flagged as such) | Measures vs. columns, ordered bands, benchmarks |
+| 05 | [Operational Costs](powerbi/05_operational_costs) | Freight and insurance by mode, weight band and country | Ratio measures, data-coverage measure, `HASONEVALUE` |
+
+---
+
+### 📈 Tableau (in progress)
 
 Not published yet. Each dashboard will be listed in a table like the ones above, with its data source, a screenshot and a link, only once it is finished.
 
 | Tool | Planned projects | Status |
 |---|---|---|
 | Tableau | Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview | 🚧 In progress |
-| Power BI | Warehouse KPIs, Procurement Analysis, Project Tracking, HR Headcount, Operational Costs | 🚧 In progress |
 
 ---
 
@@ -143,7 +158,7 @@ python run_<name>.py
 
 ## 🗺️ Roadmap
 
-The repository structure above only shows what is built. Remaining work: the 5 Tableau and 5 Power BI dashboards (see the in-progress table), then a final pass on the Excel 01 workbook so its XYZ sheet matches the corrected results.
+The repository structure above only shows what is built. Remaining work: the 5 Tableau dashboards (see the in-progress table), then a final pass on the Excel 01 workbook so its XYZ sheet matches the corrected results.
 
 ---
 
@@ -165,7 +180,9 @@ The repository structure above only shows what is built. Remaining work: the 5 T
 | SQL 03 / ML 04 | Online Retail II | [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/502/online+retail+ii) |
 | SQL 05 | Amazon India product data (raw sheet) | [Kaggle](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset) |
 | ML 02 | AI4I 2020 Predictive Maintenance Dataset | [Kaggle](https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020) |
-| ML 03, 05 | Supply Chain Shipment Pricing Data (USAID / PEPFAR SCMS) | [USAID Data](https://data.usaid.gov/HIV-AIDS/Supply-Chain-Shipment-Pricing-Data/a3rc-nmf6) |
+| ML 03, 05 / Power BI 02, 03, 05 | Supply Chain Shipment Pricing Data (USAID / PEPFAR SCMS) | [USAID Data](https://data.usaid.gov/HIV-AIDS/Supply-Chain-Shipment-Pricing-Data/a3rc-nmf6) |
+| Power BI 01 | Kaizen Analytics inventory and sales workbook (same file as SQL 01/04) | [Kaggle](https://www.kaggle.com/datasets/andrewniko/dynamic-inventory-dataset-kaizen-analytics) |
+| Power BI 04 | IBM HR Analytics Employee Attrition sample (fictional data) | [IBM/employee-attrition-aif360](https://github.com/IBM/employee-attrition-aif360) |
 
 ---
 

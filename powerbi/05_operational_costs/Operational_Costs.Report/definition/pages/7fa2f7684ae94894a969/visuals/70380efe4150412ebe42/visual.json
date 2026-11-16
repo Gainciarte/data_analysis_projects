@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "70380efe4150412ebe42",
+  "position": {
+    "x": 746,
+    "y": 130,
+    "z": 6000,
+    "height": 95,
+    "width": 232,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "card",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Logistics"
+                    }
+                  },
+                  "Property": "Air Premium vs Truck (per kg)"
+                }
+              },
+              "queryRef": "Logistics.Air Premium vs Truck (per kg)",
+              "nativeQueryRef": "Air Premium vs Truck (per kg)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "24D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Air cost per kg vs truck'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+table Warehouses
+
+	column WarehouseCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: WarehouseCode
+
+	column City
+		dataType: string
+		summarizeBy: none
+		dataCategory: City
+		sourceColumn: City
+
+	column Province
+		dataType: string
+		summarizeBy: none
+		dataCategory: StateOrProvince
+		sourceColumn: Province
+
+	column Country
+		dataType: string
+		summarizeBy: none
+		dataCategory: Country
+		sourceColumn: Country
+
+	column Latitude
+		dataType: double
+		formatString: 0.0000
+		summarizeBy: none
+		dataCategory: Latitude
+		sourceColumn: Latitude
+
+	column Longitude
+		dataType: double
+		formatString: 0.0000
+		summarizeBy: none
+		dataCategory: Longitude
+		sourceColumn: Longitude
+
+	partition Warehouses = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\\kaizen_warehouses.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"WarehouseCode", type text}, {"City", type text}, {"Province", type text}, {"Country", type text}, {"Latitude", type number}, {"Longitude", type number}}, "en-US")
+				in
+					Typed

@@ -1,0 +1,2 @@
+expression DataFolder = "C:\Claude\Portafolio\repo\powerbi\01_warehouse_kpis\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b0c75474-4747-45f5-81bf-2afe1dd2d432

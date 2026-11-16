@@ -1,0 +1,101 @@
+table Sales
+
+	column OrderNumber
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+	column OrderDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+	column SKU
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SKU
+
+	column WarehouseCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: WarehouseCode
+
+	column CustomerType
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CustomerType
+
+	column OrderQty
+		dataType: double
+		formatString: #,0
+		summarizeBy: sum
+		sourceColumn: OrderQty
+
+	column UnitSalePrice
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: sum
+		sourceColumn: UnitSalePrice
+
+	column Revenue
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+	column SalesCost
+		dataType: double
+		formatString: $#,0
+		summarizeBy: sum
+		sourceColumn: SalesCost
+
+	measure 'Total Revenue' = SUM(Sales[Revenue])
+		formatString: $#,0.0
+		displayFolder: Sales
+
+	measure Orders = DISTINCTCOUNT(Sales[OrderNumber])
+		formatString: #,0
+		displayFolder: Sales
+
+	measure 'Units Sold' = SUM(Sales[OrderQty])
+		formatString: #,0.0
+		displayFolder: Sales
+
+	measure 'Avg Order Value' = DIVIDE([Total Revenue], [Orders])
+		formatString: $#,0
+		displayFolder: Sales
+
+	measure 'Wholesale Revenue Share' = DIVIDE(CALCULATE([Total Revenue], Sales[CustomerType] = "Wholesale"), [Total Revenue])
+		formatString: 0.0%
+		displayFolder: Sales
+
+	measure 'Period Days' = DATEDIFF(MIN(Sales[OrderDate]), MAX(Sales[OrderDate]), DAY) + 1
+		formatString: #,0
+		displayFolder: Sales
+
+	measure COGS = SUM(Sales[SalesCost])
+		formatString: $#,0.0
+		displayFolder: Sales
+
+	measure 'Top 10 SKU Revenue' =
+			VAR r = RANKX(ALL(Sales[SKU]), [Total Revenue], , DESC, Dense)
+			RETURN IF(r <= 10, [Total Revenue])
+		formatString: $#,0.0
+		displayFolder: Sales
+
+	measure 'Revenue YoY %' =
+			VAR prev = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR('Calendar'[Date]))
+			RETURN IF(HASONEVALUE('Calendar'[Year]), DIVIDE([Total Revenue] - prev, prev))
+		formatString: 0.0%;-0.0%
+		displayFolder: Sales
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\\kaizen_sales.csv"), [Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"OrderNumber", type text}, {"OrderDate", type date}, {"SKU", type text}, {"WarehouseCode", type text}, {"CustomerType", type text}, {"OrderQty", type number}, {"UnitSalePrice", type number}, {"Revenue", type number}, {"SalesCost", type number}}, "en-US")
+				in
+					Typed
