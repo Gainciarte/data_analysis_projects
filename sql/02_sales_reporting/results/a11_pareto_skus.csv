@@ -1,0 +1,4 @@
+metric,skus,total_skus,pct_of_skus
+SKUs needed for 50% of revenue,593,7082,8.4
+SKUs needed for 80% of revenue,1968,7082,27.8
+SKUs needed for 95% of revenue,4111,7082,58.0

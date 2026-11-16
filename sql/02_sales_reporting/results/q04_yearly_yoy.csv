@@ -1,0 +1,4 @@
+fy,first_sale,last_sale,trading_days,orders,customers,revenue,avg_order_value,yoy_pct,is_complete
+2010,2009-12-01,2010-11-30,299,19743,4239,9428750.36,477.57,,True
+2011,2010-12-01,2011-11-30,297,18957,4293,10064755.06,530.93,6.7,True
+2012,2011-12-01,2011-12-09,8,816,614,615489.98,754.28,,False

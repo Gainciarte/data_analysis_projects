@@ -1,0 +1,10 @@
+check_name,expected,actual,ok
+raw rows = fact rows,107160.0,107160.0,True
+revenue: raw vs fact,71050985.0,71050985.0,True
+revenue: raw vs mv_daily_sales,71050985.0,71050985.0,True
+revenue: raw vs sum by category,71050985.0,71050985.0,True
+revenue: raw vs sum by size,71050985.0,71050985.0,True
+revenue: raw vs sum by week,71050985.0,71050985.0,True
+days with data = days between first and last date (no gaps),91.0,91.0,True
+lines whose repaired date is outside 2022-03-31 .. 2022-06-29,0.0,0.0,True
+lines with stored day <= 12 and day <> month are the ones that changed,42401.0,42401.0,True

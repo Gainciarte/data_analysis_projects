@@ -1,16 +1,21 @@
-"""SQL 02 - Sales Reporting: loads Kaizen sales orders into PostgreSQL, runs the report queries and saves results/images.
+"""SQL 02 - Sales Reporting on REAL data: UCI Online Retail II (main report) + Amazon India order lines (second report).
+
+Builds two star schemas (retail, amazon) in an embedded PostgreSQL, runs the report queries and saves
+results/*.csv and images/*.png.
 
 Usage (from this folder):
-    uv run --python 3.12 --with pgserver --with pandas --with openpyxl --with matplotlib --with psycopg2-binary python run_sales_reporting.py
+    uv run --python 3.12 --with pgserver --with pandas --with python-calamine --with matplotlib --with psycopg2-binary python run_sales_reporting.py
 """
 import os
 import re
 import tempfile
+import time
 from decimal import Decimal
 from io import StringIO
 from pathlib import Path
 
 import matplotlib
+import numpy as np
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -89,18 +94,26 @@ def run_queries(conn, path, save=True):
     return out
 
 
-def fmt(v):
-    if v is None or (isinstance(v, float) and v != v):
+PLAIN_INT_COLS = {"fy", "year", "customer_id", "hour"}      # identifiers: no thousands separator
+
+
+def fmt(v, col=None):
+    if col in PLAIN_INT_COLS and isinstance(v, (int, np.integer)) and not isinstance(v, (bool, np.bool_)):
+        return str(int(v))
+    if v is None or (isinstance(v, float) and v != v) or v is pd.NaT:
         return "NULL"
-    if isinstance(v, float):
+    if isinstance(v, (bool, np.bool_)):
+        return str(bool(v))
+    if isinstance(v, (float, np.floating)):
+        v = float(v)
         return f"{v:,.2f}" if abs(v) < 1000 and v != int(v) else f"{v:,.0f}"
-    if isinstance(v, int):
-        return f"{v:,}"
+    if isinstance(v, (int, np.integer)):
+        return f"{int(v):,}"
     return str(v)
 
 
 def to_markdown(df):
-    rows = [[fmt(v) for v in r] for r in df.itertuples(index=False)]
+    rows = [[fmt(v, c) for v, c in zip(r, df.columns)] for r in df.itertuples(index=False)]
     head = "| " + " | ".join(df.columns) + " |"
     sep = "|" + "|".join("---" for _ in df.columns) + "|"
     return "\n".join([head, sep] + ["| " + " | ".join(r) + " |" for r in rows])
@@ -109,7 +122,7 @@ def to_markdown(df):
 def table_png(df, title, filename, max_rows=15, col_widths=None):
     """Render a query result as an image (what a SQL client would show)."""
     d = df.head(max_rows)
-    cells = [[fmt(v) for v in r] for r in d.itertuples(index=False)]
+    cells = [[fmt(v, c) for v, c in zip(r, d.columns)] for r in d.itertuples(index=False)]
     ncol = len(d.columns)
     width = max(8, min(18, 1.5 * ncol + 2))
     fig, ax = plt.subplots(figsize=(width, 0.3 * (len(d) + 1) + 0.6))
@@ -138,71 +151,174 @@ def write_tables_md(results, names):
         parts.append(f"### {n} - {title}\n\n{to_markdown(df)}\n")
     (RESULTS / "readme_tables.md").write_text("\n".join(parts), encoding="utf-8")
 
-# ---------------------------------------------------------------- project 02
-DATA = HERE.parents[1] / "python" / "02_inventory_optimization" / "dataset_kaizen analytics.xlsx"
+# ---------------------------------------------------------------- project 02 (real data)
+import urllib.request
+import zipfile
+
+DATA_DIR = HERE / "data" / "raw"          # git-ignored by the repo (**/data/raw/)
+URL = "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip"
+CSV = DATA_DIR / "online_retail_II.csv"
+AMAZON_XLSX = HERE.parents[1] / "excel" / "01_inventory_control" / "01_inventory_control.xlsx"
 
 
-def load_data(conn):
-    sheets = pd.read_excel(DATA, sheet_name=None)
-    wh = sheets["Warehouse"].rename(columns={"Warehouse Code": "warehouse_id", "City": "city",
-                                             "Province": "province", "Country": "country"})
-    wh = wh[["warehouse_id", "city", "province", "country"]]
-    sku = sheets["SKU Items"].rename(columns={"SKU ID": "sku_id", "SKU Name": "sku_name"})
-    sal = sheets["Sales Data"].iloc[:, :8]
-    sal.columns = [c.strip() for c in sal.columns]
-    sal = sal.rename(columns={"Order Number": "order_number", "Order Date": "order_date", "SKU ID": "sku_id",
-                              "Warehouse ID": "warehouse_id", "Customer Type": "customer_type",
-                              "Order Quantity": "order_qty", "Unit Sale Price": "unit_sale_price",
-                              "Revenue": "revenue"})
-    sal["order_number"] = sal["order_number"].str.replace(" ", "", regex=False)
-    sal["order_date"] = pd.to_datetime(sal["order_date"]).dt.date
-    for name, df in [("warehouses", wh), ("sku_items", sku), ("sales", sal)]:
-        copy_df(conn, name, df)
-        print(f"loaded {name}: {len(df):,} rows")
+def get_csv():
+    """Download the UCI zip (45 MB, no login) and convert both sheets to one CSV (cached in data/raw)."""
+    if CSV.exists():
+        return CSV
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    zpath = DATA_DIR / "online_retail_II.zip"
+    if not zpath.exists():
+        print("downloading", URL)
+        req = urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=60) as resp, open(zpath, "wb") as out:
+            while chunk := resp.read(1 << 20):
+                out.write(chunk)
+    with zipfile.ZipFile(zpath) as z:
+        z.extract("online_retail_II.xlsx", DATA_DIR)
+    print("converting xlsx -> csv (calamine engine, ~1 min)")
+    sheets = pd.read_excel(DATA_DIR / "online_retail_II.xlsx", sheet_name=None, engine="calamine",
+                           dtype={"Invoice": str, "StockCode": str})
+    df = pd.concat(sheets.values(), ignore_index=True)
+    df["Customer ID"] = df["Customer ID"].astype("Int64")
+    df.to_csv(CSV, index=False)
+    return CSV
+
+
+def load_retail(conn, csv_path):
+    with open(csv_path, "r", encoding="utf-8", newline="") as f:
+        conn.cursor().copy_expert(
+            "COPY retail.raw_transactions (invoice, stock_code, description, quantity, invoice_ts, unit_price, "
+            "customer_id, country) FROM STDIN WITH (FORMAT csv, HEADER true)", f)
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM retail.raw_transactions")
+    print(f"loaded retail.raw_transactions: {cur.fetchone()[0]:,} rows")
+
+
+def load_amazon(conn):
+    """'Clean Data' sheet, loaded exactly as stored: the day/month swap is repaired in SQL (02_model.sql)."""
+    df = pd.read_excel(AMAZON_XLSX, sheet_name="Clean Data", header=1, engine="calamine")
+    df = df.rename(columns={"SKU": "sku", "Category": "category", "Date": "stored_date", "Size": "size",
+                            "Qty": "qty", "Amount": "amount"})
+    df["stored_date"] = pd.to_datetime(df["stored_date"]).dt.date
+    copy_df(conn, "amazon.raw_orders", df[["sku", "category", "stored_date", "size", "qty", "amount"]])
+    print(f"loaded amazon.raw_orders: {len(df):,} rows")
+
+
+def step(label, t0):
+    print(f"[{time.time() - t0:7.1f}s] {label}", flush=True)
 
 
 def main():
+    t0 = time.time()
+    csv_path = get_csv()
+    step("Online Retail II csv ready", t0)
     conn = connect("sales_reporting")
     run_script(conn, HERE / "01_schema.sql")
-    load_data(conn)
-    run_script(conn, HERE / "02_views.sql")
-    res = run_queries(conn, HERE / "03_reports.sql")
+    load_retail(conn, csv_path)
+    load_amazon(conn)
+    step("raw tables loaded", t0)
+    run_script(conn, HERE / "02_model.sql")
+    step("star schemas built (02_model.sql)", t0)
+    run_script(conn, HERE / "03_views.sql")
+    step("views + materialized views built (03_views.sql)", t0)
+    res = run_queries(conn, HERE / "04_reports_retail.sql")
+    res.update(run_queries(conn, HERE / "05_reports_amazon.sql"))
+    step(f"{len(res)} report queries run", t0)
     for k, (t, df) in res.items():
         print(f"\n== {k}: {t}\n{df.head(40).to_string(index=False)}")
     write_tables_md(res, list(res))
 
-    table_png(res["q02_yearly_yoy"][1], "q02 - Yearly revenue and YoY growth", "01_yearly_yoy_table.png")
-    table_png(res["q04_monthly_mom"][1], "q04 - Monthly revenue: MoM, YTD running total, 3-month moving average",
-              "02_monthly_mom_table.png", max_rows=14)
-    table_png(res["q05_quarterly_yoy"][1], "q05 - Quarterly revenue vs same quarter last year", "03_quarterly_yoy_table.png")
-    table_png(res["q09_top10_skus"][1], "q09 - Top 10 SKUs by revenue", "04_top10_skus_table.png")
-    table_png(res["q10_top3_per_warehouse"][1], "q10 - Top 3 SKUs per warehouse (RANK OVER PARTITION)",
-              "05_top3_per_warehouse_table.png")
+    # ---- table renders (what a SQL client would show)
+    table_png(res["q04_yearly_yoy"][1], "q04 - Online Retail II: revenue per business year (Dec-Nov) and YoY (GBP)", "01_retail_yearly_yoy_table.png")
+    table_png(res["q05_monthly_mom"][1], "q05 - Monthly revenue: MoM, YoY, YTD running total, 3-month moving average (GBP)", "02_retail_monthly_mom_table.png", max_rows=25)
+    table_png(res["q06_quarterly_yoy"][1], "q06 - Quarterly revenue vs same quarter last year (only complete quarters)", "03_retail_quarterly_yoy_table.png")
+    table_png(res["q08_top_products"][1], "q08 - Top 15 products: RANK by revenue, DENSE_RANK by units", "04_retail_top_products_table.png")
+    table_png(res["q12_top_countries"][1], "q12 - Top 10 countries: RANK by revenue, DENSE_RANK by orders", "05_retail_top_countries_table.png")
+    table_png(res["q11_pareto_curve"][1], "q11 - Product contribution (Pareto)", "06_retail_pareto_table.png")
+    table_png(res["q19_outlier_orders"][1], "q19 - Biggest single sale lines and the cancellations of the same product by the same customer", "07_retail_outlier_orders_table.png")
+    table_png(res["a04_weekly_growth"][1], "a04 - Amazon India: weekly revenue and growth on average daily revenue (INR)", "09_amazon_weekly_table.png", max_rows=15)
+    table_png(res["a09_top_skus"][1], "a09 - Amazon India: top 15 SKUs (RANK / DENSE_RANK)", "10_amazon_top_skus_table.png")
+    table_png(res["a06_category_mix"][1], "a06 - Amazon India: category mix", "11_amazon_category_mix_table.png")
 
-    m = res["q04_monthly_mom"][1]
-    ct = res["q06_customer_type"][1]
-    sk = res["q09_top10_skus"][1]
-    fig, ax = plt.subplots(2, 2, figsize=(15, 9))
-    ax[0, 0].bar(m["year_month"], m["revenue"] / 1e6, color="#2980b9", label="Monthly revenue")
+    # ---- retail dashboard
+    m = res["q05_monthly_mom"][1]
+    nv = res["q17_new_vs_returning"][1]
+    co = res["q12_top_countries"][1]
+    co = co[co["country"] != "United Kingdom"].sort_values("revenue")
+    wd = res["q14_weekday"][1]
+    hr = res["q15_hour"][1]
+    fig, ax = plt.subplots(2, 3, figsize=(20, 10))
+    cols = ["#bdc3c7" if p else "#2980b9" for p in m["is_partial"]]
+    ax[0, 0].bar(m["year_month"], m["revenue"] / 1e6, color=cols)
     ax[0, 0].plot(m["year_month"], m["moving_avg_3m"] / 1e6, color="#c0392b", lw=2, label="3-month moving avg")
-    ax[0, 0].set_xticks(range(0, len(m), 3))
-    ax[0, 0].set_xticklabels(m["year_month"][::3], rotation=60, fontsize=8)
-    ax[0, 0].set_title("Monthly revenue (millions)")
+    ax[0, 0].set_xticks(range(0, len(m), 2))
+    ax[0, 0].set_xticklabels(m["year_month"][::2], rotation=60, fontsize=8)
+    ax[0, 0].set_title("Monthly revenue, GBP millions (grey = partial month)")
     ax[0, 0].legend()
-    ax[0, 1].bar(m["year_month"], m["mom_pct"].fillna(0), color=["#27ae60" if v >= 0 else "#c0392b" for v in m["mom_pct"].fillna(0)])
-    ax[0, 1].set_xticks(range(0, len(m), 3))
-    ax[0, 1].set_xticklabels(m["year_month"][::3], rotation=60, fontsize=8)
-    ax[0, 1].set_title("Month-over-month growth (%) - LAG window")
-    ax[1, 0].bar(ct["customer_type"], ct["revenue"] / 1e6, color=["#1f3b5c", "#2980b9", "#85c1e9"])
-    for i, (v, p) in enumerate(zip(ct["revenue"] / 1e6, ct["pct_revenue"])):
-        ax[1, 0].text(i, v, f"{v:,.0f}M ({p}%)", ha="center", va="bottom")
-    ax[1, 0].set_title("Revenue by customer type (millions)")
-    ax[1, 1].barh(sk["sku_id"], sk["revenue"] / 1e6, color="#8e44ad")
-    ax[1, 1].invert_yaxis()
-    ax[1, 1].set_title("Top 10 SKUs by revenue (millions)")
+    y = m.dropna(subset=["yoy_pct"])
+    ax[0, 1].bar(y["year_month"], y["yoy_pct"], color=["#27ae60" if v >= 0 else "#c0392b" for v in y["yoy_pct"]])
+    ax[0, 1].set_xticks(range(len(y)))
+    ax[0, 1].set_xticklabels(y["year_month"], rotation=60, fontsize=8)
+    ax[0, 1].axhline(0, color="black", lw=0.8)
+    ax[0, 1].set_title("Year-over-year growth by month, % (LAG 12)")
+    x = range(len(nv))
+    ax[0, 2].bar(x, nv["revenue_new"] / 1e6, color="#27ae60", label="New customers")
+    ax[0, 2].bar(x, nv["revenue_returning"] / 1e6, bottom=nv["revenue_new"] / 1e6, color="#2980b9", label="Returning customers")
+    ax[0, 2].bar(x, nv["revenue_guest"] / 1e6, bottom=(nv["revenue_new"] + nv["revenue_returning"]) / 1e6, color="#bdc3c7", label="Guest checkout")
+    ax[0, 2].set_xticks(list(x)[::2])
+    ax[0, 2].set_xticklabels(nv["year_month"][::2], rotation=60, fontsize=8)
+    ax[0, 2].set_title("Revenue by customer type, GBP millions")
+    ax[0, 2].legend(fontsize=8)
+    ax[1, 0].barh(co["country"], co["revenue"] / 1e3, color="#8e44ad")
+    for i, (v, p) in enumerate(zip(co["revenue"] / 1e3, co["pct_revenue"])):
+        ax[1, 0].text(v, i, f" {v:,.0f}k ({p}%)", va="center", fontsize=8)
+    ax[1, 0].set_xlim(0, (co["revenue"] / 1e3).max() * 1.3)
+    ax[1, 0].set_title("Countries ranked 2-10 (UK excluded), GBP thousands")
+    ax[1, 1].bar(wd["weekday"], wd["revenue"] / 1e6, color="#16a085")
+    for i, (v, p) in enumerate(zip(wd["revenue"] / 1e6, wd["pct_revenue"])):
+        ax[1, 1].text(i, v, f"{p}%", ha="center", va="bottom", fontsize=9)
+    ax[1, 1].set_title("Revenue by weekday, GBP millions")
+    ax[1, 2].bar(hr["hour"], hr["revenue"] / 1e6, color="#d35400")
+    ax[1, 2].set_xticks(hr["hour"])
+    ax[1, 2].set_title("Revenue by hour of the day, GBP millions")
+    fig.suptitle("Online Retail II (UK gift retailer, Dec-2009 .. 9-Dec-2011) - valid product sales", fontsize=13, weight="bold")
     fig.tight_layout()
-    fig.savefig(IMAGES / "06_sales_dashboard.png", dpi=130, facecolor="white")
-    print("\nDone. CSVs in results/, PNGs in images/")
+    fig.savefig(IMAGES / "08_retail_dashboard.png", dpi=110, facecolor="white")
+    plt.close(fig)
+
+    # ---- amazon dashboard
+    d = res["a03_daily"][1]
+    w = res["a04_weekly_growth"][1]
+    cat = res["a06_category_mix"][1].sort_values("revenue")
+    sz = res["a07_size_mix"][1]
+    fig, ax = plt.subplots(2, 2, figsize=(16, 10))
+    ax[0, 0].bar(d["order_date"].astype(str), d["revenue"] / 1e6, color="#e67e22", label="Daily revenue")
+    ax[0, 0].plot(d["order_date"].astype(str), d["moving_avg_7d"] / 1e6, color="#1f3b5c", lw=2, label="7-day moving avg")
+    ax[0, 0].set_xticks(range(0, len(d), 7))
+    ax[0, 0].set_xticklabels(d["order_date"].astype(str)[::7], rotation=60, fontsize=8)
+    ax[0, 0].set_title("Daily revenue, INR millions (repaired dates)")
+    ax[0, 0].legend()
+    ax[0, 1].bar(w["week_start"].astype(str), w["avg_daily_revenue"] / 1e6, color=["#bdc3c7" if p else "#2980b9" for p in w["is_partial"]])
+    for i, g in enumerate(w["wow_pct"]):
+        if g == g:
+            ax[0, 1].text(i, w["avg_daily_revenue"].iloc[i] / 1e6, f"{g:+.1f}%", ha="center", va="bottom", fontsize=8)
+    ax[0, 1].set_xticks(range(len(w)))
+    ax[0, 1].set_xticklabels(w["week_start"].astype(str), rotation=60, fontsize=8)
+    ax[0, 1].set_title("Average daily revenue per week, INR millions (grey = partial week; label = WoW)")
+    ax[1, 0].barh(cat["category"], cat["revenue"] / 1e6, color="#8e44ad")
+    for i, (v, p) in enumerate(zip(cat["revenue"] / 1e6, cat["pct_revenue"])):
+        ax[1, 0].text(v, i, f" {v:,.1f}M ({p}%)", va="center", fontsize=8)
+    ax[1, 0].set_xlim(0, (cat["revenue"] / 1e6).max() * 1.25)
+    ax[1, 0].set_title("Revenue by category, INR millions")
+    ax[1, 1].bar(sz["size"], sz["pct_revenue"], color="#16a085")
+    for i, v in enumerate(sz["pct_revenue"]):
+        ax[1, 1].text(i, v, f"{v}%", ha="center", va="bottom", fontsize=8)
+    ax[1, 1].set_title("Revenue share by size, %")
+    fig.suptitle("Amazon India shipped order lines, 31-Mar-2022 .. 29-Jun-2022", fontsize=13, weight="bold")
+    fig.tight_layout()
+    fig.savefig(IMAGES / "12_amazon_dashboard.png", dpi=110, facecolor="white")
+    plt.close(fig)
+    step("Done. CSVs in results/, PNGs in images/", t0)
 
 
 if __name__ == "__main__":

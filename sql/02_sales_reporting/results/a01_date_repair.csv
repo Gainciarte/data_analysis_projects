@@ -1,0 +1,3 @@
+version,first_date,last_date,distinct_days,distinct_months,lines_swapped
+as stored in the workbook,2022-01-04,2022-12-06,91,12,0
+repaired (day <= 12: day and month swapped),2022-03-31,2022-06-29,91,4,42401

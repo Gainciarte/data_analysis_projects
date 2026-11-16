@@ -1,0 +1,9 @@
+metric,products,pct_of_products,pct_of_revenue
+products needed for 50% of revenue,282,6.0,50.0
+products needed for 80% of revenue,1025,21.8,80.0
+products needed for 95% of revenue,2285,48.5,95.0
+top 1% of products,48,1.0,19.1
+top 5% of products,236,5.0,46.1
+top 10% of products,471,10.0,62.0
+top 20% of products,942,20.0,78.1
+top 50% of products,2354,50.0,95.4

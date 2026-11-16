@@ -1,0 +1,12 @@
+check_name,expected,actual,ok
+raw rows = fact rows,1067371.0,1067371.0,True
+SALE revenue: fact vs enriched view,20108995.4,20108995.4,True
+SALE revenue: fact vs mv_monthly_revenue,20108995.4,20108995.4,True
+SALE revenue: fact vs mv_product_revenue,20108995.4,20108995.4,True
+SALE revenue: fact vs sum by country,20108995.4,20108995.4,True
+SALE revenue: fact vs sum by business year,20108995.4,20108995.4,True
+SALE orders: sum of monthly orders = distinct invoices,39516.0,39516.0,True
+"lines where line_amount <> ROUND(quantity x unit_price, 2)",0.0,0.0,True
+SALE lines with quantity <= 0 or unit_price <= 0,0.0,0.0,True
+CANCELLATION lines with positive quantity,0.0,0.0,True
+SALE lines on a non-product stock code,0.0,0.0,True
