@@ -53,7 +53,7 @@ Extract, clean, and analyze book data from a public e-commerce website using web
 - **Price cleaning:** Removed currency symbol encoding issues (`Â£` → `£`), converted to float
 - **Rating conversion:** Mapped word ratings to numeric values (`'Three'` → `3`)
 - **Availability cleaning:** Stripped whitespace and newline characters
-- **URL completion:** Converted relative paths to absolute URLs
+- **URL completion:** Resolved the relative links against the `/catalogue/` folder (the first version pointed at the site root and every link returned HTTP 404; the 100 links were re-checked, 98 answered 200 and 2 timed out on the check)
 - Created new columns with clean, analysis-ready data types
 
 ### Exploratory Data Analysis
