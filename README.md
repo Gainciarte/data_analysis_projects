@@ -70,6 +70,8 @@ data_analysis_projects/
 
 Each project has numbered `.sql` scripts that run top to bottom, a small Python loader that reproduces the results, the real query outputs in `results/` and charts in `images/`.
 
+> **Dialect.** All queries were written and executed on PostgreSQL 16. They use window functions, CTEs and `FILTER`, which MySQL 8 also supports in most cases, but they have **not** been run on MySQL or SQL Server; expect small syntax changes (for example `FILTER`, `::` casts, `DATE_TRUNC`). A MySQL version is planned.
+
 | # | Project | Description | Key Skills |
 |---|---|---|---|
 | 01 | [Inventory Queries](sql/01_inventory_queries) | Stock status, reorder risk, ABC/XYZ, dead stock and overstock for 303 SKUs, with reusable views | CTEs, window functions, `FILTER`, views |
