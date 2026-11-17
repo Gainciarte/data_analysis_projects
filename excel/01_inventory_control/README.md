@@ -30,7 +30,7 @@ Classify a catalog of 7,082 SKUs from an Amazon e-commerce dataset using ABC and
 - Category names localized from Indian garment terminology to standard apparel terms
 
 ### ABC Analysis
-Classification by **annual sales value** (Amount):
+Classification by **sales value** over the 3-month window (Amount):
 
 | Class | Criterion | SKUs | % of SKUs |
 |---|---|---|---|
@@ -38,7 +38,7 @@ Classification by **annual sales value** (Amount):
 | B | Next 15% of total value | 2,143 | 30.3% |
 | C | Bottom 5% of total value | 2,972 | 42.0% |
 
-> Note: ABC was calculated using sales value (revenue), not cost value, as cost data was not available in this dataset. Percentages use the 7,082 classified SKUs as denominator; the workbook's `Summary` sheet hard-codes 7,116 in its percentage formulas, which is why it shows slightly different shares.
+> Note: ABC was calculated using sales value (revenue), not cost value, as cost data was not available in this dataset. Percentages use the 7,082 classified SKUs as denominator. (The previous `Summary` sheet divided by a hard-coded 7,116; it now divides by the number of classified SKUs.)
 
 ### XYZ Analysis
 Classification by **demand variability** using Coefficient of Variation (CV = Std Dev / Mean of monthly Qty):
@@ -57,7 +57,7 @@ CV is computed over the three full months (April–June 2022) for the 7,081 SKUs
 | **B** | 554 | 1,006 | 583 |
 | **C** | 214 | 610 | 2,147 |
 
-> **Data correction.** In the workbook's `Clean Data` sheet the day and month were swapped for every date with a day ≤ 12 (the text `MM-DD-YY` was read with a day-first locale). That spread three months of sales over twelve calendar months and made almost every SKU look erratic (the workbook's `XYZ Analysis` sheet shows 0 X / 234 Y / 6,848 Z). The ABC result is not affected because it only uses total value. The figures above come from [`verify_xyz.py`](verify_xyz.py), which repairs the dates, recomputes XYZ and writes `results/xyz_recomputed.csv` and `results/abc_xyz_matrix.csv`. The `XYZ Analysis` sheet itself has not been rebuilt yet.
+> **Data correction (applied to the workbook).** In the workbook's `Clean Data` sheet the day and month were swapped for every date with a day ≤ 12 (the text `MM-DD-YY` was read with a day-first locale). That spread three months of sales over twelve calendar months and made almost every SKU look erratic (the earlier `XYZ Analysis` sheet showed 0 X / 234 Y / 6,848 Z). The ABC result is not affected because it only uses total value. The workbook now has the dates repaired in `Clean Data` (31 Mar to 29 Jun 2022), the pivot table refreshed, and the `XYZ Analysis` sheet rebuilt on units sold in the three full months (March keeps only 31 March and is shown for reference). `Summary` also gets the ABC x XYZ matrix, its XYZ ranges were shifted by one row and the key insight now names the real dominant combination (C-Z). [`verify_xyz.py`](verify_xyz.py) recomputes everything independently from `Clean Data` and writes `results/xyz_recomputed.csv` and `results/abc_xyz_matrix.csv`; its output matches the workbook (1,528 X / 2,583 Y / 2,970 Z, 0 class mismatches).
 
 ---
 
@@ -78,8 +78,8 @@ CV is computed over the three full months (April–June 2022) for the 7,081 SKUs
 |---|---|
 | Raw Data | Original dataset as downloaded |
 | Clean Data | Filtered and cleaned data (Shipped only, formatted dates and amounts) |
-| ABC Analysis | SKU classification by annual sales value with cumulative % |
-| XYZ Analysis | SKU classification by demand variability (CV) |
+| ABC Analysis | SKU classification by sales value (31 Mar - 29 Jun 2022) with cumulative % |
+| XYZ Analysis | SKU classification by demand variability (CV of monthly units, Apr-Jun) with the ABC class alongside |
 | Summary | Executive dashboard with KPIs and key insights |
 
 ---
@@ -105,7 +105,7 @@ CV is computed over the three full months (April–June 2022) for the 7,081 SKUs
 
 - **No cost data available** — ABC was calculated on revenue, not consumption cost. Results reflect sales importance, not procurement value.
 - **Stock Status analysis excluded** — the dataset contains sales transactions only, with no inventory level data (current stock, min/max). A dedicated inventory dataset would be required for that analysis.
-- **Short time window** — the dataset covers about 3 months, so each SKU has at most three monthly observations and CV is coarse (a SKU that sells once is automatically Z). A 12-month window is recommended for production use. Annual value in the ABC sheet is therefore a three-month value.
+- **Short time window** — the dataset covers about 3 months, so each SKU has at most three monthly observations and CV is coarse (a SKU that sells once is automatically Z). A 12-month window is recommended for production use. The value in the ABC sheet is therefore a three-month value, not annual.
 
 ---
 

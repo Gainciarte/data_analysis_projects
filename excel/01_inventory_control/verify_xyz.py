@@ -26,9 +26,13 @@ abc = pd.read_excel(XLSX, sheet_name="ABC Analysis", header=1).dropna(subset=["A
 
 # 1) repair dates: swap day and month where the stored day is <= 12
 d = clean["Date"]
-swap = d.dt.day <= 12
+# The delivered workbook already holds the repaired dates (range 31 Mar - 29 Jun 2022). Only an older copy
+# (dates spread over 2022-01..2022-12) still needs the day/month swap.
+needs_swap = d.max() > pd.Timestamp("2022-06-30")
+swap = (d.dt.day <= 12) if needs_swap else pd.Series(False, index=d.index)
 fixed = d.copy()
-fixed[swap] = pd.to_datetime({"year": d[swap].dt.year, "month": d[swap].dt.day, "day": d[swap].dt.month})
+if needs_swap:
+    fixed[swap] = pd.to_datetime({"year": d[swap].dt.year, "month": d[swap].dt.day, "day": d[swap].dt.month})
 clean["Date_fixed"] = fixed
 print("Date range in workbook :", d.min().date(), "->", d.max().date())
 print("Date range after repair:", fixed.min().date(), "->", fixed.max().date())
