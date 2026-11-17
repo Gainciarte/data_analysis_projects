@@ -2,7 +2,7 @@
 
 A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
 
-**Status:** 25 of 30 planned projects completed (Excel, Python, SQL, Machine Learning and Power BI). The 5 Tableau dashboards are in progress (see [Tableau](#-tableau-in-progress)); they will be added to the project tables as each one is finished and published.
+**Status:** 26 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 1 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-1-of-5-built) section as each one is finished; Tableau Public links will be added after publishing.
 
 ---
 
@@ -32,7 +32,7 @@ data_analysis_projects/
 | Spreadsheets | Microsoft Excel (Advanced), Power Query |
 | Programming | Python (pandas, numpy, scipy, matplotlib, seaborn, requests, BeautifulSoup, sqlalchemy) |
 | Databases | PostgreSQL 16 (SQL projects), SQLite |
-| BI | Power BI Desktop (DAX, Power Query, PBIP projects); Tableau Public (in progress) |
+| BI | Power BI Desktop (DAX, Power Query, PBIP projects); Tableau Public |
 | Machine Learning | scikit-learn, statsmodels |
 | Version Control | Git, GitHub |
 
@@ -110,13 +110,15 @@ Five dashboards saved as **Power BI Projects (`.pbip`)**: the semantic model (ta
 
 ---
 
-### 📈 Tableau (in progress)
+### 📈 Tableau (1 of 5 built)
 
-Not published yet. Each dashboard will be listed in a table like the ones above, with its data source, a screenshot and a link, only once it is finished.
+Workbooks are saved as `.twbx` (data embedded as a Hyper extract) next to a README and a screenshot. Links to Tableau Public are added once each dashboard is published.
 
-| Tool | Planned projects | Status |
-|---|---|---|
-| Tableau | Logistics Dashboard, Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview | 🚧 In progress |
+| # | Project | Description | Main techniques |
+|---|---|---|---|
+| 01 | [Logistics Dashboard](tableau/01_logistics_dashboard) | On-time delivery, late rate by transport mode, top destinations and freight cost (USAID SCMS, 10,324 order lines) | Calculated fields, Top N filter, sorted bars, KPI tiles, Hyper extract |
+
+Still to build: Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview.
 
 ---
 
@@ -160,7 +162,7 @@ python run_<name>.py
 
 ## 🗺️ Roadmap
 
-The repository structure above only shows what is built. Remaining work: the 5 Tableau dashboards (see the in-progress table), then a final pass on the Excel 01 workbook so its XYZ sheet matches the corrected results.
+The repository structure above only shows what is built. Remaining work: the remaining Tableau dashboards, and a MySQL run of the SQL projects.
 
 ---
 
