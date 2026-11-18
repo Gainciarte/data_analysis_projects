@@ -2,7 +2,7 @@
 
 A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
 
-**Status:** 26 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 1 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-1-of-5-built) section as each one is finished; Tableau Public links will be added after publishing.
+**Status:** 27 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 2 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-2-of-5-built) section as each one is finished; Tableau Public links will be added after publishing.
 
 ---
 
@@ -110,15 +110,16 @@ Five dashboards saved as **Power BI Projects (`.pbip`)**: the semantic model (ta
 
 ---
 
-### 📈 Tableau (1 of 5 built)
+### 📈 Tableau (2 of 5 built)
 
 Workbooks are saved as `.twbx` (data embedded as a Hyper extract) next to a README and a screenshot. Links to Tableau Public are added once each dashboard is published.
 
 | # | Project | Description | Main techniques |
 |---|---|---|---|
 | 01 | [Logistics Dashboard](tableau/01_logistics_dashboard) | On-time delivery, late rate by transport mode, top destinations and freight cost (USAID SCMS, 10,324 order lines) | Calculated fields, Top N filter, sorted bars, KPI tiles, Hyper extract |
+| 02 | [Sales Performance](tableau/02_sales_performance) | Total and per-store sales, holiday-week uplift, top and bottom stores, and sales by temperature, fuel price and unemployment band (Walmart, 45 stores, 6,435 store-weeks) | Calculated fields, Top N filters, banded dimensions, small multiples by year, Hyper extract |
 
-Still to build: Sales Performance, Customer Segmentation, Supply Chain Map, Financial Overview.
+Still to build: Customer Segmentation, Supply Chain Map, Financial Overview.
 
 ---
 
@@ -162,7 +163,7 @@ python run_<name>.py
 
 ## 🗺️ Roadmap
 
-The repository structure above only shows what is built. Remaining work: the remaining Tableau dashboards, and a MySQL run of the SQL projects.
+The repository structure above only shows what is built. Remaining work: the remaining Tableau dashboards and a MySQL run of the SQL projects.
 
 ---
 
