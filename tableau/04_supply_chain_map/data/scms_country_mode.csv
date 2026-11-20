@@ -1,0 +1,98 @@
+Country,ShipmentMode,Lines,LineValue,LateLines
+Afghanistan,Air,3,4617.35,0
+Angola,Air,5,181600.0,0
+Angola,Truck,2,16800.0,0
+Belize,Air,1,630.0,0
+Benin,Air,13,787725.48,3
+Botswana,Air,63,1546999.21,2
+Botswana,Not recorded,3,36000.0,0
+Botswana,Truck,4,49900.0,0
+Burkina Faso,Air,2,451.25,0
+Burundi,Air,98,3351580.36,38
+Cameroon,Air,61,10644193.37,3
+Cameroon,Air Charter,14,3984976.82,4
+Democratic Republic of the Congo,Air,331,5465586.35,83
+Democratic Republic of the Congo,Truck,2,306750.0,0
+Ivory Coast,Air,682,61525853.95,71
+Ivory Coast,Air Charter,5,766244.52,0
+Ivory Coast,Not recorded,113,8667751.93,1
+Ivory Coast,Ocean,5,2107215.86,0
+Ivory Coast,Truck,278,47817434.63,62
+Dominican Republic,Air,49,3088876.79,4
+Dominican Republic,Truck,3,57600.0,0
+Ethiopia,Air,194,17664900.11,12
+Ethiopia,Not recorded,18,1018200.28,0
+Ethiopia,Ocean,1,460420.8,0
+Ethiopia,Truck,3,3477.48,0
+Ghana,Air,43,5147621.55,8
+Ghana,Ocean,2,554838.13,0
+Ghana,Truck,13,750821.42,0
+Guatemala,Air,15,655249.12,2
+Guinea,Air,1,3600.0,0
+Guyana,Air,229,4215010.81,24
+Guyana,Not recorded,5,34784.0,0
+Guyana,Truck,3,1826.66,0
+Haiti,Air,560,27773861.99,61
+Haiti,Air Charter,4,7936.88,0
+Haiti,Not recorded,2,47200.0,0
+Haiti,Ocean,83,15089412.03,0
+Haiti,Truck,6,584375.0,1
+Kazakhstan,Air,2,35000.0,0
+Kenya,Air,82,30369909.98,14
+Kenya,Truck,29,3561651.0,0
+Kyrgyzstan,Air,2,79000.0,0
+Lebanon,Air,8,9.36,0
+Lesotho,Air,4,253220.0,0
+Liberia,Air,6,102840.0,0
+Libya,Air,8,164366.01,1
+Malawi,Air,10,109456.0,0
+Malawi,Ocean,4,5745000.0,0
+Mali,Air,17,146870.0,0
+Mozambique,Air,290,40128312.64,9
+Mozambique,Ocean,4,1327040.0,0
+Mozambique,Truck,337,140569338.08,107
+Namibia,Air,87,5048938.21,1
+Namibia,Not recorded,2,33600.0,0
+Namibia,Truck,6,774485.65,0
+Nigeria,Air,547,109873063.23,71
+Nigeria,Air Charter,608,238867577.26,71
+Nigeria,Not recorded,36,1376206.88,0
+Nigeria,Ocean,1,152007.6,0
+Nigeria,Truck,2,3249.9,0
+Pakistan,Air,15,1442540.0,0
+Rwanda,Air,338,43353376.33,13
+Rwanda,Air Charter,1,3330.0,0
+Rwanda,Ocean,20,11178281.71,0
+Rwanda,Truck,71,16592595.04,24
+Senegal,Air,3,8864.0,1
+Sierra Leone,Air,4,379550.0,0
+South Africa,Air,230,24383275.04,39
+South Africa,Not recorded,42,214778.03,1
+South Africa,Ocean,229,76166521.77,65
+South Africa,Truck,905,7905570.63,10
+South Sudan,Air,162,2130903.43,21
+South Sudan,Truck,2,2253.3,0
+Sudan,Air,46,299338.4,0
+Swaziland,Air,32,3507485.85,3
+Swaziland,Ocean,2,2009158.0,0
+Swaziland,Truck,1,649350.0,0
+Tanzania,Air,306,61853908.37,15
+Tanzania,Not recorded,20,3836311.14,2
+Tanzania,Ocean,6,5900185.48,0
+Tanzania,Truck,187,57869090.66,49
+Togo,Air,3,153781.24,1
+Uganda,Air,534,50035473.44,55
+Uganda,Not recorded,8,93022.78,0
+Uganda,Ocean,8,3211444.51,0
+Uganda,Truck,229,42857395.43,43
+Vietnam,Air,687,56933687.94,6
+Vietnam,Truck,1,40717.92,0
+Zambia,Air,195,40141320.95,19
+Zambia,Not recorded,99,24636456.75,0
+Zambia,Ocean,3,949221.5,0
+Zambia,Truck,386,181261841.21,89
+Zimbabwe,Air,145,14293089.34,7
+Zimbabwe,Air Charter,18,2742165.67,0
+Zimbabwe,Not recorded,12,371664.01,0
+Zimbabwe,Ocean,3,1327196.4,0
+Zimbabwe,Truck,360,85705845.09,70
