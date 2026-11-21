@@ -2,7 +2,7 @@
 
 A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
 
-**Status:** 29 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 4 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-4-of-5-built) section as each one is finished; Tableau Public links will be added after publishing.
+**Status:** 30 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 5 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-5-of-5-built) section as each one is finished; Tableau Public links will be added after publishing.
 
 ---
 
@@ -110,7 +110,7 @@ Five dashboards saved as **Power BI Projects (`.pbip`)**: the semantic model (ta
 
 ---
 
-### 📈 Tableau (4 of 5 built)
+### 📈 Tableau (5 of 5 built)
 
 Workbooks are saved as `.twbx` (data embedded as a Hyper extract) next to a README and a screenshot. Links to Tableau Public are added once each dashboard is published.
 
@@ -120,8 +120,7 @@ Workbooks are saved as `.twbx` (data embedded as a Hyper extract) next to a READ
 | 02 | [Sales Performance](tableau/02_sales_performance) | Total and per-store sales, holiday-week uplift, top and bottom stores, and sales by temperature, fuel price and unemployment band (Walmart, 45 stores, 6,435 store-weeks) | Calculated fields, Top N filters, banded dimensions, small multiples by year, Hyper extract |
 | 03 | [Customer Segmentation](tableau/03_customer_segmentation) | RFM segments of 5,852 customers: share of customers and revenue by segment, average recency, frequency and spend, and a log-scale frequency vs monetary scatter (UCI Online Retail II, segments from ML 04) | Calculated fields, FIXED level-of-detail expressions, log-scale scatter, sorted bars, Hyper extract |
 | 04 | [Supply Chain Map](tableau/04_supply_chain_map) | Filled country map of 43 destinations colored by late delivery %, shipment value by mode from a second data source, and KPI tiles (USAID SCMS, 10,324 order lines) | Filled map with geographic role, two Hyper data sources, calculated field, sorted bars, KPI tiles |
-
-Still to build: Financial Overview.
+| 05 | [Financial Overview](tableau/05_financial_overview) | Budget vs actual for 2023: totals, variance by month and category, and months over, on track or under budget for 6 cost categories (Kaggle expenses dataset, 72 category-months; same data as Excel 05) | Calculated field, two Hyper data sources, line and bar charts, sorted bars, KPI tiles |
 
 ---
 
@@ -165,7 +164,7 @@ python run_<name>.py
 
 ## 🗺️ Roadmap
 
-The repository structure above only shows what is built. Remaining work: the remaining Tableau dashboards and a MySQL run of the SQL projects.
+The repository structure above only shows what is built. Remaining work: a MySQL run of the SQL projects.
 
 ---
 
