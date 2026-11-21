@@ -1,2 +1,6 @@
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+# Archivos que Power BI Desktop crea al abrir el proyecto (no son parte del tablero)
+**/.platform
+**/.pbi/editorSettings.json
+**/diagramLayout.json
