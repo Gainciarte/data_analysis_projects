@@ -53,4 +53,4 @@ All numbers were checked against `check_numbers.py` (pandas on the same CSVs); t
 - Late % on small countries rests on few lines (some have fewer than 10).
 - "Not recorded" shipment mode (360 lines, 1.1% late) is a data gap, not a transport mode.
 - No filter actions between map and bars were configured or tested.
-- The workbook is built for Tableau Public 2026.3 or later; the Tableau Public link will be added once published.
+- The workbook is built for Tableau Public 2026.3 or later; published on Tableau Public: https://public.tableau.com/app/profile/gustavo.inciarte/viz/04_supply_chain_map/Supplychainmap

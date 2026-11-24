@@ -60,7 +60,7 @@ All figures were checked against an independent pandas calculation on the same C
 - On the scatter, vertical stripes at low frequency come from frequency being a whole number of invoices.
 - Months, decimal and thousands separators follow the language of the Tableau installation (Spanish in the screenshot: `71,6%` is 71.6%).
 - Filter actions between the charts were not configured or tested.
-- The workbook is built for Tableau Public 2026.3 or later. A link to the published version will be added here once it is published.
+- The workbook is built for Tableau Public 2026.3 or later. Published on Tableau Public: https://public.tableau.com/app/profile/gustavo.inciarte/viz/03_customer_segmentation/Customersegmentationdashboard
 
 ---
 

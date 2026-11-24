@@ -56,7 +56,7 @@ Figures in the dashboard were checked against an independent pandas calculation 
 
 - Freight is only numeric for 6,198 of the 10,324 lines; the rest are recorded as text (for example, freight included in the commodity cost) and are excluded from the freight chart.
 - "Not recorded" shipment mode (1.1% late) is a data gap, not a transport mode.
-- The workbook is built for Tableau Public 2026.3 or later. A link to the published version will be added here once it is published.
+- The workbook is built for Tableau Public 2026.3 or later. Published on Tableau Public: https://public.tableau.com/app/profile/gustavo.inciarte/viz/01_logistics_dashboard/Logisticsdashboard
 
 ---
 

@@ -62,7 +62,7 @@ All figures in the dashboard were checked against an independent pandas calculat
 - The Top/Bottom charts show store totals over the whole period, not per-year rankings.
 - Month names follow the language of the Tableau installation (Spanish in the screenshot); number separators likewise.
 - The last x-axis labels of the unemployment chart are slightly clipped in the screenshot taken in presentation mode.
-- The workbook is built for Tableau Public 2026.3 or later. A link to the published version will be added here once it is published.
+- The workbook is built for Tableau Public 2026.3 or later. Published on Tableau Public: https://public.tableau.com/app/profile/gustavo.inciarte/viz/02_sales_performance/Salesperformancedashboard
 
 ---
 

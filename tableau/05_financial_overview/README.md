@@ -57,4 +57,4 @@ All numbers were checked with `check_numbers.py` (pandas on the same CSVs). The 
 - Tableau displays numbers with the thousands separator of the computer's locale (dots on the machine that took the screenshot).
 - The status bands (+/-5%) are a choice made for this dashboard.
 - Chart colors are explained in the titles, as legends were not added to the dashboard layout; no filter actions were configured or tested.
-- The workbook is built for Tableau Public 2026.3 or later; the Tableau Public link will be added once published.
+- The workbook is built for Tableau Public 2026.3 or later; published on Tableau Public: https://public.tableau.com/app/profile/gustavo.inciarte/viz/05_financial_overview/Financialoverview
