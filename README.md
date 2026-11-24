@@ -2,7 +2,7 @@
 
 A portfolio of data analysis projects across multiple tools and technologies, covering real-world use cases in logistics, operations, supply chain, and business intelligence. Built by a mechanical engineer with 8+ years in supply chain, warehousing and procurement, adding data analysis tools to that background.
 
-**Status:** 30 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 5 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-5-of-5-built) section as each one is finished; All five are published on [Tableau Public](https://public.tableau.com/app/profile/gustavo.inciarte/vizzes).
+**Status:** 30 of 30 planned projects built (Excel, Python, SQL, Machine Learning, Power BI and 5 of 5 Tableau dashboards). The Tableau dashboards are listed in the [Tableau](#-tableau-5-of-5-built) section as each one is finished. All five are published on [Tableau Public](https://public.tableau.com/app/profile/gustavo.inciarte/vizzes).
 
 ---
 
